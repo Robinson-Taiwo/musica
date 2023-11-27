@@ -1,0 +1,211 @@
+.home-container {
+    overflow-x: hidden;
+}
+
+
+
+
+
+.home-container {
+    background: #1D2123;
+
+
+    @apply text-white w-[100vw]
+}
+
+.home-navbar {
+    @apply pl-[1.69rem] pr-[1.81rem] flex flex-row justify-between pt-[1.4rem] mb-[1.75rem]
+}
+
+.nav-menu-bar {
+    @apply left-[0rem] top-[0rem] w-[1.5rem] h-[1.5rem]
+}
+
+.hidden-text {
+    @apply hidden
+}
+
+/* 
+.menus {
+    @apply
+} */
+
+.curated-list {
+    @apply pr-[1.5rem] pl-[1.44rem] mb-[2.94rem]
+}
+
+.sky-blue {
+    @apply h-[31.4375rem] w-[100%] rounded-[1.25rem] bg-[#609EAF] flex flex-col justify-between pb-[2.62rem] pl-[2.06rem] pr-[3.62rem] relative overflow-hidden
+}
+
+.curated-text {
+    @apply text-[0.75rem] leading-[120%] text-white pt-[2rem]
+}
+
+.curated-second {
+    @apply flex flex-col
+}
+
+.curated-second h1 {
+    @apply text-[2.187rem] font-bold leading-[120%]
+}
+
+.curated-second p {
+    @apply text-[0.87rem] font-normal leading-[120%]
+}
+
+.frames {
+    @apply flex flex-row justify-between items-center mt-[2.88rem]
+}
+
+.frames p {
+    @apply text-[1.2rem]
+}
+
+.frameheart {
+    @apply w-[1.7rem] h-[1.7rem]
+}
+
+.curl {
+    stroke-width: 0.119px;
+    stroke: #FFF;
+    transform: rotate(90.24deg);
+    @apply absolute top-[-6rem] left-[6rem]
+}
+
+.nav-links {
+    @apply h-[100vh] w-[100vw] absolute bg-dark z-[1000] top-[0rem] left-[0rem] pt-[6.81rem] pl-[2.31rem] flex flex-col
+}
+
+.links {
+    @apply flex flex-col gap-[3.12rem]
+}
+
+.link {
+    color: rgba(239, 238, 224, 0.25);
+    @apply text-[1.062rem] flex flex-row items-center leading-[120%] gap-[1.69rem]
+}
+
+.cancle-links {
+    @apply h-[1.5rem] w-[1.5rem]
+}
+
+.x-links {
+    @apply flex-1 flex justify-center items-center
+}
+
+.top-charts h1, .new-release-head {
+    @apply text-[1.25rem] leading-[120%] font-bold mb-[1rem]
+}
+
+.top-charts {
+    @apply pl-[1.5rem]
+}
+
+.chart-slides {
+    touch-action: pan-y;
+    /* Allow smooth touch scrolling */
+    scroll-behavior: smooth;
+    /* Enable smooth scrolling */
+
+    width: 100vw;
+    /* Make it wider than the screen */
+    overflow-x: auto;
+    @apply whitespace-nowrap flex mb-[2.5rem]
+}
+
+.chart-slide {
+    border-radius: 1.25rem;
+    background-color: #1A1E1F;
+    display: inline-block;
+    @apply h-[14.56rem] min-w-[18.187rem] pt-[0.94rem] px-[0.88rem] pb-[1.44rem] mr-[1.06rem]
+}
+
+
+.new-releases {
+    border-radius: 1.25rem;
+    touch-action: pan-y;
+    /* Allow smooth touch scrolling */
+    scroll-behavior: smooth;
+    /* Enable smooth scrolling */
+
+    width: 100vw;
+    /* Make it wider than the screen */
+    overflow-x: auto;
+    @apply whitespace-nowrap flex mb-[2.5rem]
+}
+
+
+.heart-circle {
+
+    width: 2.3125rem;
+    height: 2.3125rem;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    @apply rounded-[50%] flex justify-center items-center
+}
+
+.yellow-heart {
+    fill: rgba(0, 0, 0, 0.00);
+
+    @apply w-[1.125rem] h-[1.125rem]
+}
+
+.chart-slide-one {
+    @apply flex justify-between items-start
+}
+
+.slide-title {
+    @apply text-[1.06rem] leading-[120%] mt-[0.94rem] mb-[0.38rem]
+}
+
+.slide-artist {
+    color: rgba(255, 255, 255, 0.50);
+
+
+    @apply text-[0.75rem] leading-[120%] mb-[1.5rem]
+}
+
+.slide-time {
+    @apply text-[0.88rem]
+}
+
+
+
+.album-card img {
+
+    @apply h-[9.5625rem] min-w-[9.5625rem]
+}
+
+.album-card {
+    @apply mr-[1.88rem] inline-block
+}
+
+.footer {
+    height: 7.8125rem;
+    border: 1px solid #ffffff1a;
+    background: rgba(29, 33, 35, 0.30);
+    backdrop-filter: blur(15px);
+
+    @apply w-[100%] left-[0rem] fixed bottom-[0rem] px-[1rem];
+}
+
+.footer-desc {
+    @apply flex flex-row gap-[0.76rem] items-center 
+}
+
+.footer-desc-texts h1{
+    @apply leading-[120%] font-bold
+}
+
+.footer-desc-texts {
+    @apply flex flex-col gap-[0.21rem]
+}
+
+.footer-content {
+    @apply h-[100%] flex flex-row justify-between items-center
+}
+
+
+.footer-controls {
+    @apply flex flex-row gap-[1.44rem] items-center justify-center
+}
