@@ -7,7 +7,7 @@
 }
 
 .nav-links {
-    @apply h-[100vh] w-[100vw] fixed bg-dark z-[1000] top-[0rem] left-[0rem] pt-[6.81rem] pl-[2.31rem] flex flex-col
+    @apply h-[100vh] w-[100vw] fixed bg-dark z-[1000] top-[0rem] left-[0rem] pt-[2.81rem] pl-[2.31rem] flex flex-col
 }
 
 .links {
