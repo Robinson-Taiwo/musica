@@ -93,6 +93,8 @@
     width: 100vw;
     /* Make it wider than the screen */
     overflow-x: auto;
+    overflow-x: auto;
+    white-space: nowrap;
     @apply whitespace-nowrap flex mb-[2.5rem]
 }
 
