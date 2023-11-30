@@ -1,0 +1,8 @@
+.album-cards img {
+
+    @apply h-[9.5625rem] min-w-[9.5625rem]
+}
+
+.album-cards {
+    @apply mr-[1.88rem] inline-block
+}

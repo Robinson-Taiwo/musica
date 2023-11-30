@@ -16,7 +16,6 @@ import whiteHeart from "../Icons/white-heart.svg"
 import yellowHeart from "../Icons/heart.svg"
 import circle from "../Icons/circle.svg"
 import curl from "../Icons/white-curl.svg"
-import cancle from "../Icons/cancle.svg"
 import data from "./data"
 import chartcard from "/Images/chartcard.png"
 import play from "../Icons/play.svg"
@@ -26,17 +25,12 @@ import next from "../Icons/next.svg"
 import "./Home.css"
 import { Link } from 'react-router-dom'
 import SlideCard from './SlideCard'
+import Navbar from './Navbar'
 
 const Home = () => {
 
 
-    const [openMenu, setOpenMenu] = useState(false)
 
-
-    const toggleMenu = () => {
-        setOpenMenu(!openMenu)
-        console.log(openMenu)
-    }
 
     // useEffect(() => {
     //     setOpenMenu(false)
@@ -46,102 +40,9 @@ const Home = () => {
     return (
         <>
 
-            <div className="home-container">
+            <div className={`home-container`}>
 
-                <div className="home-navbar">
-
-                    <img src={logo} alt="" className="nav-logo" />
-
-
-                    <aside className={openMenu ? "nav-links" : "hidden-text"}>
-
-                        <div className="links">
-
-                            <div className="link">
-
-                                <img src={home} alt="" className="nav-icons" />
-
-                                <Link to="/">
-
-                                    Home
-                                </Link>
-                            </div>
-
-                            <div className="link">
-
-                                <img src={playlist} alt="" className="nav-icons" />
-
-                                <p>
-
-                                    My collections
-                                </p>
-                            </div>
-
-                            <div className="link">
-
-                                <img src={radio} alt="" className="nav-icons" />
-
-                                <p>
-
-                                    Radio
-                                </p>
-                            </div>
-
-                            <div className="link">
-
-                                <img src={videos} alt="" className="nav-icons" />
-
-                                <p>
-
-                                    Music videos
-                                </p>
-                            </div>
-                            <div className="link">
-
-                                <img src={profile} alt="" className="nav-icons" />
-
-                                <p>
-
-                                    Profile
-                                </p>
-                            </div>
-
-                            <div className="link">
-
-                                <img src={Logout} alt="" className="nav-icons" />
-
-                                <p>
-
-                                    Log out
-                                </p>
-                            </div>
-
-
-
-
-                        </div>
-
-                        <div className="x-links">
-
-                            <img src={cancle} onClick={toggleMenu} alt="" className="cancle-links" />
-                        </div>
-
-
-
-
-                    </aside>
-
-                    <div className="menus">
-
-                        <img src={menu} alt="" onClick={toggleMenu} className={!openMenu ? "nav-menu-bar" : "flext"} />
-
-                    </div>
-
-
-
-                </div>
-
-
+                <Navbar />
 
                 <div className="curated-list">
 
@@ -217,10 +118,14 @@ const Home = () => {
 
                             {data.map((item, index) => (
 
-                                <div key={index} className="album-card">
+                                <div key={index} className="album-cards">
 
 
-                                    <img src={item.url} alt="" />
+                                    <Link to="/album" >
+
+                                        <img src={item.url} alt="" />
+                                    </Link>
+
                                 </div>
 
 
@@ -242,7 +147,7 @@ const Home = () => {
                     <div className="footer-content">
                         <div className="footer-desc">
 
-                            <img src={season} alt="" />
+                            <img src={season} alt="" className='season-image' />
 
                             <div className="footer-desc-texts">
                                 <h1>Seasons in</h1>

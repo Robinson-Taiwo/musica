@@ -1,0 +1,94 @@
+.Album-container {
+    /* background:  #1D2123;  */
+    background: linear-gradient(180deg, rgba(29, 33, 35, 0.80) 0%, #1D2123 61.48%), url(/Images/chartLead.png), lightgray 50% / cover no-repeat;
+
+
+
+    @apply bg-cover bg-center w-[100vw] bg-no-repeat
+}
+
+/*     background: rgba(53, 53, 93, 0.7);
+ */
+
+.album-body {
+    @apply mt-[2.75rem] pl-[1.75rem] pr-[1.88rem] w-[100%] sphone:pl-[1rem] sphone:pr-[1rem]
+}
+
+.chart-lead {
+    @apply mb-[1.56rem] w-[100%] h-[18.0625rem] sphone:h-[16rem]
+}
+
+.album-body-heading {
+
+    @apply font-bold text-[2.1875rem] leading-[120%] text-[#A4C7C6] mb-[0.56rem] sphone:text-[1.8rem]
+}
+
+.album-body-p, .album-body-songs {
+    font-family: 'Quicksand', sans-serif;
+
+    @apply text-[0.875rem] w-[100%] text-[#EFEEE0] mt-[0.62rem] sphone:text-[0.72rem] mb-[1.56rem]
+}
+
+.album-actions {
+    @apply w-[100%] flex flex-row justify-between mb-[1.56rem]
+}
+
+.album-icons {
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(5px);
+
+
+    @apply flex flex-row gap-[0.62rem] text-[0.75rem] text-white leading-[120%] p-[0.62rem] sphone:gap-[0.42rem]
+}
+
+.album-card {
+    border-radius: 0.625rem;
+    background: rgba(51, 55, 59, 0.37);
+
+    backdrop-filter: blur(5px);
+    @apply w-[100%] px-[0.56rem] py-[0.5rem]
+}
+
+.album-card img {
+    border-radius: 0.3125rem;
+
+    @apply h-[2.4375rem] min-w-[2.4375rem]
+}
+
+.album-card-texts h1 {
+    @apply text-[0.725rem] font-normal text-white leading-[120%]
+}
+
+.album-card-texts p {
+    @apply text-[0.625rem] font-normal text-white leading-[120%]
+}
+
+.album-card-more img {
+    @apply h-[0.875rem] w-[0.875rem]
+}
+
+.album-card {
+    @apply flex flex-row
+}
+
+.album-card-texts {
+    @apply flex flex-col gap-[0.38rem] ml-[0.88rem]
+}
+
+.album-card {
+    @apply flex flex-row justify-between items-center
+}
+
+.album-card-first {
+    @apply flex flex-row
+}
+
+.album-card-more {
+    @apply text-[0.75rem] text-white items-center flex flex-col gap-[0.5rem]
+}
+
+.album-cards-container {
+    @apply flex flex-col gap-[0.88rem]
+}

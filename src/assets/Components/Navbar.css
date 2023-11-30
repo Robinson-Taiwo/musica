@@ -1,0 +1,33 @@
+.home-navbar {
+    @apply pl-[1.69rem] pr-[1.81rem] flex flex-row justify-between pt-[1.4rem] mb-[1.75rem] bg-transparent
+}
+
+.nav-menu-bar {
+    @apply left-[0rem] top-[0rem] w-[1.5rem] h-[1.5rem]
+}
+
+.nav-links {
+    @apply h-[100vh] w-[100vw] fixed bg-dark z-[1000] top-[0rem] left-[0rem] pt-[6.81rem] pl-[2.31rem] flex flex-col
+}
+
+.links {
+    @apply flex flex-col gap-[3.12rem]
+}
+
+.link {
+    color: rgba(239, 238, 224, 0.25);
+    @apply text-[1.062rem] flex flex-row items-center leading-[120%] gap-[1.69rem]
+}
+
+.cancle-links {
+    @apply h-[1.5rem] w-[1.5rem]
+}
+
+.x-links {
+    @apply flex-1 flex justify-center items-center
+}
+
+.overlay-open {
+    overflow-y: hidden;
+    overflow: hidden;
+}
