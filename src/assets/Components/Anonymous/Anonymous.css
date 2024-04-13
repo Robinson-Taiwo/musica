@@ -1,0 +1,79 @@
+.a-container{
+    background: linear-gradient(360deg, hsla(217, 77%, 63%, 1) 0%, hsla(299, 100%, 50%, 1) 100%);
+    @apply h-fit relative items-center flex justify-center flex-col pt-[1rem]
+}
+
+
+.second-layer{
+    color: rgb(202, 202, 202);
+    @apply pt-[7rem] flex flex-col justify-start items-center  px-[1.4rem] gap-[1rem]   w-[94%]  h-fit bg-[#250933] rounded-xl tablet:w-[75%] desktop:w-[30%] pb-[10rem] mb-[3rem]
+}
+
+.user-name{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    @apply text-[2rem] font-extrabold   text-center flex-wrap 
+}
+
+.user-link{
+    @apply text-[0.9rem]
+}
+
+.user-notice{
+    @apply text-justify text-[0.8rem]
+}
+
+.notice-bold{
+    @apply font-extrabold font-serif text-[white]
+}
+
+.user-buttons{
+    @apply flex flex-col w-[100%] gap-[1.3rem] mt-[1.5rem] items-center 
+}
+
+.view-messages{
+    background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%);
+    @apply py-[0.6rem] rounded-3xl w-[85%] text-[0.8rem] text-white font-medium
+}
+
+.share-link{
+    @apply rounded-lg py-[0.8rem] bg-[#d33c55] w-[85%] flex items-center justify-center  text-[0.8rem] text-[white] font-medium
+}
+
+.green{
+    @apply  bg-[#4da44d]
+}
+
+.blue{
+    @apply  bg-[#4b4bb3]
+}
+
+.google_play{
+    @apply w-[75%]
+}
+
+
+.purple-line{
+    background: rgba(191, 97, 242, 0.831);
+    @apply h-[0.1rem] w-[90%] 
+}
+
+.share{
+    @apply h-[1.5rem] w-[1.5rem]
+}
+
+.settings{
+    @apply flex items-center justify-center  gap-[1rem] mt-[1rem]
+}
+
+.anonymous-footer{
+    @apply flex flex-col bg-[#3b3c41] h-[11vh] w-[100%] items-center py-[1rem] text-[#888686] text-[0.8rem] font-semibold
+}
+
+
+.v-lines{
+    @apply h-[1rem] w-[0.10rem] bg-[white]
+}   
+
+.footer-links{
+    @apply flex flex-row  w-[100%] items-center justify-center gap-[0.3rem] mt-[0.5rem] font-normal
+}
