@@ -1,0 +1,83 @@
+.a-container{
+    background: linear-gradient(360deg, hsla(217, 77%, 63%, 1) 0%, hsla(299, 100%, 50%, 1) 100%);
+    @apply h-fit relative items-center flex justify-center flex-col pt-[1rem]
+}
+
+
+.second-layers{
+    color: rgb(202, 202, 202);
+    @apply pt-[1.5rem] flex flex-col justify-start   px-[1.7rem] gap-[1rem]   w-[94%]  h-fit bg-[#250933] rounded-xl tablet:w-[75%] desktop:w-[30%] pb-[5rem] mb-[3rem] desktop:px-[4rem]
+}
+
+
+.anonymous-footer{
+    @apply flex flex-col bg-[#3b3c41] h-[11vh] w-[100%] items-center py-[1rem] text-[#888686] text-[0.8rem] font-semibold
+}
+
+
+.v-lines{
+    @apply h-[1rem] w-[0.10rem] bg-[white]
+}   
+
+.footer-links{
+    @apply flex flex-row  w-[100%] items-center justify-center gap-[0.3rem] mt-[0.5rem] font-normal
+}
+
+.say-something{
+    @apply text-[2.5rem] text-center  font-bold text-white mb-[3rem]
+}
+
+.red-star{
+    @apply text-[red] font-extrabold
+}
+
+.saySomething{
+        @apply mb-[1rem]
+  
+}
+
+#text-area{
+    @apply bg-transparent w-[100%] min-h-[11rem]
+}
+
+#text-area::placeholder{
+    @apply text-[1.15rem]
+}
+
+.horizontal-line{
+    border-bottom: 2px solid white;
+    @apply w-[100%]
+}
+
+#text-area:focus{
+    @apply outline-none 
+}
+
+.bold-white{
+    @apply text-white font-bold 
+}
+
+.character-left{
+    @apply mb-[0.8rem]
+}
+
+.send-message{
+    @apply w-[100%] flex items-center justify-center 
+}
+
+.view-messagess{
+    background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%);
+    @apply py-[0.8rem] rounded-3xl text-[0.8rem] text-white font-medium desktop:py-[1rem] desktop:text-[0.9rem] mt-[2rem] w-[100%]
+}
+
+.send-notice{
+    @apply mt-[1rem] text-[0.7rem]
+}
+
+.wyt{
+    @apply text-[0.95rem]  mb-[5rem]
+}
+
+.anonymous-guide{
+    @apply text-[0.95rem]
+}
