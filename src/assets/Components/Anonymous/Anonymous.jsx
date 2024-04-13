@@ -8,6 +8,7 @@ import instagram from "/icons/instagram.svg"
 import facebook from "/icons/facebook.svg"
 
 import "./Anonymous.css"
+import { Link } from 'react-router-dom'
 
 
 const Anonymous = () => {
@@ -51,9 +52,9 @@ useEffect(() => {
 <div className="user-buttons">
 
 
-<button className="view-messages">
+<Link to="/message" className="view-messages">
     View Messages 
-</button>
+</Link>
 
 <button className="share-link setting ">
  <span><img src={share} alt="" className='share' /></span> <span>Share My Profile</span>
