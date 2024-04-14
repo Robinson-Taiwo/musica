@@ -41,7 +41,8 @@ onChange={(e)=>setMessage(e.target.value)}
 ></textarea>
 
 <p className="character-left">
-   <span className="bold-white"> 254</span> characters remaining 
+   <span className="bold-white">
+    {message.length}</span> characters
 </p>
 <div className="horizontal-line"></div>
 
