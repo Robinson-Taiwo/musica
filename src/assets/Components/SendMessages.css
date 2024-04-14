@@ -24,7 +24,7 @@
 }
 
 .say-something{
-    @apply text-[2.5rem] text-center  font-bold text-white mb-[3rem]
+    @apply text-[2.5rem] text-center  font-bold text-white mb-[3rem] flex items-center justify-center px-[3rem]
 }
 
 .red-star{
@@ -32,7 +32,7 @@
 }
 
 .saySomething{
-        @apply mb-[1rem]
+        @apply mb-[1rem] 
   
 }
 
@@ -80,4 +80,8 @@
 
 .anonymous-guide{
     @apply text-[0.95rem]
+}
+
+.icon-logo{
+    @apply h-[4rem] w-[4rem]
 }

@@ -15,7 +15,7 @@
 }
 
 .user-link{
-    @apply text-[0.9rem]
+    @apply text-[0.9rem] flex flex-row 
 }
 
 .user-notice{
@@ -32,7 +32,7 @@
 
 .view-messages{
     background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%);
-    @apply py-[0.6rem] rounded-3xl w-[85%] text-[0.8rem] text-white font-medium desktop:py-[1rem] desktop:text-[0.9rem]
+    @apply py-[0.6rem] rounded-3xl w-[85%] text-[0.8rem] items-center flex justify-center  text-white font-medium desktop:py-[1rem] desktop:text-[0.9rem]
 }
 
 .share-link{
@@ -84,4 +84,8 @@
 
 .footer-links{
     @apply flex flex-row  w-[100%] items-center justify-center gap-[0.3rem] mt-[0.5rem] font-normal
+}
+
+.copy{
+    @apply h-[0.8rem] w-[0.8rem] ml-[0.6rem]
 }

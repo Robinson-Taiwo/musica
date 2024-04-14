@@ -4,6 +4,10 @@ import React, { useEffect, useState } from 'react'
 import AnonymousModal from './AnonymousModal'
 import play from "/Images/play.png"
 import share from "/icons/share.svg"
+import whatsapp from "/icons/whatsapp.svg"
+import arrow from "/icons/arrow.svg"
+import copy from "/icons/copy.svg"
+
 import instagram from "/icons/instagram.svg"
 import facebook from "/icons/facebook.svg"
 
@@ -41,7 +45,7 @@ useEffect(() => {
     </h1>
 
     <h2 className="user-link">
-        https://gdpd.xyz/@oluwarotimi__
+       <span> https://gdpd.xyz/@oluwarotimi__</span>  <span><img className='copy' src={copy} alt="" /></span>
     </h2>
 
     <p className="user-notice">
@@ -52,16 +56,16 @@ useEffect(() => {
 <div className="user-buttons">
 
 
-<Link to="/message" className="view-messages">
-    View Messages 
+<Link  to="/message" className="view-messages settings">
+<span>Share My Profile</span> <span><img src={arrow } alt="" className='share' /></span>
 </Link>
 
 <button className="share-link setting ">
  <span><img src={share} alt="" className='share' /></span> <span>Share My Profile</span>
 </button>
 
-<button className="share-link green  ">
-    Share on Whatsapp
+<button className="share-link settings green  ">
+<span><img src={whatsapp} alt="" className='share' /></span> <span>Share on Whatsapp</span>
 </button>
 
 <button className="share-link settings blue">

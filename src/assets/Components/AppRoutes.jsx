@@ -5,6 +5,7 @@ import Home from './Home'
 import Album from './Album'
 import Anonymous from './Anonymous/Anonymous'
 import SendMessages from './SendMessages'
+import Login from './Login'
 
 
 const AppRoutes = () => {
@@ -18,6 +19,8 @@ const AppRoutes = () => {
             <Route path="/Anonymous" element={<Anonymous />} />
 
             <Route path="/Message" element={<SendMessages/>} />
+
+            <Route path="/Login" element={<Login/>} />
 
         </Routes>
     )
