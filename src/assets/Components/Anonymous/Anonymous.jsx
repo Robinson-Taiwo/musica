@@ -7,6 +7,8 @@ import share from "/icons/share.svg"
 import whatsapp from "/icons/whatsapp.svg"
 import arrow from "/icons/arrow.svg"
 import copy from "/icons/copy.svg"
+import settings from "/icons/settings.svg"
+
 
 import instagram from "/icons/instagram.svg"
 import facebook from "/icons/facebook.svg"
@@ -86,7 +88,7 @@ useEffect(() => {
 </div>
 
 <button className="view-messages settings ">
-   <span>settings</span> <span><img src={share} alt="" className='shared' /></span>
+   <span>settings</span> <span><img src={settings} alt="" className='shared' /></span>
 </button>
 
 

@@ -62,7 +62,7 @@
 }
 
 .shared{
-    @apply h-[1rem] w-[1em]
+    @apply h-[2rem] w-[2.5em]
 }
 
 .settings{
