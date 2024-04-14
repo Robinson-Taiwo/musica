@@ -89,3 +89,9 @@
 .copy{
     @apply h-[0.8rem] w-[0.8rem] ml-[0.6rem]
 }
+
+
+
+.mt{
+    @apply mt-[1.5rem]
+}

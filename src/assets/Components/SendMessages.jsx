@@ -1,9 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import "./SendMessages.css"
 
 const SendMessages = () => {
+
+const [messageLength, setMessageLenth] =useState(0)
+const [message, setMessage] = useState("")
+
+
+console.log(message.length)
+
+
+
   return (
 
 
@@ -26,7 +35,10 @@ const SendMessages = () => {
     </p>
 </label>
 
-<textarea name="" placeholder='Leave A message for @oluwarotimi__ here..' maxLength={254} id="text-area" ></textarea>
+<textarea name="" placeholder='Leave A message for @oluwarotimi__ here..' maxLength={254} id="text-area"
+value={message}
+onChange={(e)=>setMessage(e.target.value)}
+></textarea>
 
 <p className="character-left">
    <span className="bold-white"> 254</span> characters remaining 

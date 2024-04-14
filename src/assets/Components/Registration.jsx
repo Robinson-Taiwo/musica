@@ -2,10 +2,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import icon from "/Images/logo-icon.png"
-import "./Login.css"
-import { Link } from 'react-router-dom'
+import arrow from "/icons/arrow.svg"
 
-const Login = () => {
+import { Link } from 'react-router-dom'
+import "./Registration.css"
+
+const Registration = () => {
   return (
     <div className='a-container' >
         
@@ -18,12 +20,10 @@ const Login = () => {
 
 
 <h1 className="login-header">
-    Login
+   Register
 </h1>
 
-<p className="login-text">
-    Recieve anonymous compliments from your friends and send anonymous messages to your friends for free
-</p>
+
 
 <form action="">
 
@@ -39,20 +39,22 @@ const Login = () => {
 <input className='login-input '  type="text" placeholder='Enter your password ' />
 
 <Link to="/Profile" className="view-messagesd settings ">
-   <span>Login</span> <span></span>
+   <span>Register Account</span> <span><img src={arrow } alt="" className='share' /></span>
 </Link>
 </form>
 
 <div className="login-last">
-<p className="forgot-password">
-    Forgot Password
-</p>
 
-<Link to="/Register" className="forgot-password">
-    Don't Have An Account? Register
+
+<Link to="/Login" className="forgot-password">
+    Already Have an Account? Login
 </Link>
 
 </div>
+
+<p className="agreement">
+By using this service, you agree to our Privacy Policy, Terms of Service and any related policies. (Check Disclaimer)   
+</p>
 
 
 
@@ -88,4 +90,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Registration
