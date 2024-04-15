@@ -1,6 +1,6 @@
 .a-container{
     background: linear-gradient(360deg, hsla(217, 77%, 63%, 1) 0%, hsla(299, 100%, 50%, 1) 100%);
-    @apply h-fit relative items-center flex justify-center flex-col pt-[1rem]
+    @apply min-h-[100vh] relative items-center flex justify-center flex-col pt-[1rem]
 }
 
 
@@ -11,7 +11,7 @@
 
 
 .anonymous-footer{
-    @apply flex flex-col bg-[#3b3c41] h-[11vh] w-[100%] items-center py-[1rem] text-[#888686] text-[0.8rem] font-semibold
+    @apply flex flex-col bg-[#3b3c41] h-[11vh] w-[100%] items-center py-[1rem] text-[#888686] text-[0.8rem] font-semibold desktop:absolute desktop:bottom-0
 }
 
 

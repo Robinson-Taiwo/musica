@@ -62,7 +62,7 @@ useEffect(() => {
 <span>View Messages</span> <span><img src={arrow } alt="" className='share' /></span>
 </Link>
 
-<button  className="share-link setting ">
+<button  className="share-link settingss ">
  <span><img src={share} alt="" className='share' /></span> <span>Share My Profile</span>
 </button>
 

@@ -46,7 +46,7 @@ const Registration = () => {
 <div className="login-last">
 
 
-<Link to="/Login" className="forgot-password">
+<Link to="/" className="forgot-password">
     Already Have an Account? Login
 </Link>
 

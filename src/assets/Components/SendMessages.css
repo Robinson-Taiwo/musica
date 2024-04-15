@@ -65,9 +65,9 @@
     @apply w-[100%] flex items-center justify-center 
 }
 
-.view-messagess{
-    background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%);
-    @apply py-[0.8rem] rounded-3xl text-[0.8rem] text-white font-medium desktop:py-[1rem] desktop:text-[0.9rem] mt-[2rem] w-[100%]
+.view-messagessd{
+    background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%)!important;
+    @apply py-[0.8rem] rounded-3xl text-[0.95rem] text-white font-medium desktop:py-[1rem] desktop:text-[0.9rem] mt-[2rem] w-[100%] flex flex-row  gap-[0.5rem]
 }
 
 .send-notice{
@@ -84,4 +84,8 @@
 
 .icon-logo{
     @apply h-[4rem] w-[4rem]
+}
+
+.sharedd{
+    @apply h-[0.95rem] w-[0.95rem]
 }

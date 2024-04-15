@@ -1,19 +1,4 @@
-.Modal-container{
-    overflow-x: hidden;
-    overflow: hidden;
-    overflow-y: hidden;
- @apply h-[100vh] bg-[#f9efef] w-[100%] bg-opacity-0  absolute top-[0rem] left-[0rem]
-}
-
-.modal-answer{
-    @apply w-[100%] flex justify-end text-[0.7rem] 
-}
-
 .showModal{
-    @apply  relative top-[50%] w-[80%] left-[5%] rounded-lg p-[1rem] flex items-center justify-center flex-col  gap-[2rem] border-[2px] border-[purple] bg-[#390f4e] text-[#d7d1d1]
+    background-color: rgba(0 0 0 0.5);
+    @apply fixed h-[100vh] w-[100vw]  bottom-0 left-0 text-white overflow-hidden overflow-x-hidden overflow-y-hidden
 }
-
-.showNoModal{
-    @apply hidden
-} 
-

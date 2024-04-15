@@ -73,6 +73,10 @@
     @apply flex items-center justify-center  gap-[1rem] mt-[1rem]
 }
 
+.settingss{
+    @apply flex items-center justify-center  gap-[1rem] mt-[0rem]
+}
+
 .anonymous-footer{
     @apply flex flex-col bg-[#3b3c41] h-[11vh] w-[100%] items-center py-[1rem] text-[#888686] text-[0.8rem] font-semibold
 }

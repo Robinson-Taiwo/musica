@@ -1,15 +1,29 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
+import send from "/icons/send.svg"
+
 import "./SendMessages.css"
+import AnonymousModal from './Anonymous/AnonymousModal'
 
 const SendMessages = () => {
 
-const [messageLength, setMessageLenth] =useState(0)
+// const [messageLength, setMessageLenth] =useState(0)
 const [message, setMessage] = useState("")
+const [modal, setModal] = useState(false);
+const [showModal, setsSowModal] = useState(false)
+
+const maxLengths = 508
+const remainingCharacter = maxLengths - message.length
 
 
-console.log(message.length)
+const openModal = (event)=>{
+    event.preventDefault()
+   setsSowModal(!showModal)
+   console.log(showModal)
+}
+
 
 
 
@@ -19,6 +33,9 @@ console.log(message.length)
 <section className="a-container">
 
 
+    {showModal ? <AnonymousModal modal={showModal} /> : ""} 
+
+
     <div className="second-layers">
 
 <h1 className="say-something">
@@ -26,7 +43,7 @@ console.log(message.length)
 </h1>
 
 
-<form action="" className="message-form">
+<form action="" onSubmit={openModal} className="message-form">
 
 <label htmlFor="#saySomething">
 
@@ -35,22 +52,22 @@ console.log(message.length)
     </p>
 </label>
 
-<textarea name="" placeholder='Leave A message for @oluwarotimi__ here..' maxLength={254} id="text-area"
+<textarea name="" placeholder='Leave A message for @oluwarotimi__ here..' maxLength={maxLengths} id="text-area"
 value={message}
 onChange={(e)=>setMessage(e.target.value)}
 ></textarea>
 
 <p className="character-left">
    <span className="bold-white">
-    {message.length}</span> characters
+    {remainingCharacter}</span> characters remaining
 </p>
 <div className="horizontal-line"></div>
 
 
 <div className="send-message">
 
-<button className="view-messagess settings ">
-   <span>send Message</span> <span><img  alt="" className='shared' /></span>
+<button type='submit' className="view-messagessd settings ">
+   <span>send Message</span> <span><img src={send}  alt="" className='sharedd' /></span>
 </button>
 
 </div>
