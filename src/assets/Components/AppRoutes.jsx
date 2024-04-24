@@ -7,6 +7,7 @@ import Anonymous from './Anonymous/Anonymous'
 import SendMessages from './SendMessages'
 import Login from './Login'
 import Registration from './Registration'
+import Answers from './Anonymous/Answers'
 
 
 const AppRoutes = () => {
@@ -19,11 +20,13 @@ const AppRoutes = () => {
 
             <Route path="/Anonymous" element={<Anonymous />} />
 
-            <Route path="/Message" element={<SendMessages/>} />
+            <Route path="/" element={<SendMessages/>} />
 
-            <Route path="/" element={<Login/>} />
+            <Route path="/Login" element={<Login/>} />
 
             <Route path="/Register" element={<Registration/>} />
+
+            <Route path="/Answers" element={<Answers/>} />
 
         </Routes>
     )

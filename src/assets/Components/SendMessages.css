@@ -1,6 +1,6 @@
 .a-container{
     background: linear-gradient(360deg, hsla(217, 77%, 63%, 1) 0%, hsla(299, 100%, 50%, 1) 100%);
-    @apply h-fit relative items-center flex justify-center flex-col pt-[1rem]
+    @apply h-fit  items-center flex justify-center flex-col pt-[1rem] 
 }
 
 
@@ -15,6 +15,12 @@
 }
 
 
+/* 
+.h-mid{
+    @apply h-[100vh] fixed bg-[#32242497] z-[10000] top-[0] left-[0] w-[100vw]
+} */
+
+
 .v-lines{
     @apply h-[1rem] w-[0.10rem] bg-[white]
 }   
@@ -25,6 +31,11 @@
 
 .say-something{
     @apply text-[2.5rem] text-center  font-bold text-white mb-[3rem] flex items-center justify-center px-[3rem]
+}
+
+
+.fill-form{
+    @apply text-[2.5rem] text-center  font-bold text-white mb-[1rem] flex items-center justify-center w-[100] 
 }
 
 .red-star{
@@ -88,4 +99,8 @@
 
 .sharedd{
     @apply h-[0.95rem] w-[0.95rem]
+}
+
+.toat-messages{
+    @apply flex w-[100%] items-center justify-center relative top-[-2rem] text-[green] font-bold 
 }

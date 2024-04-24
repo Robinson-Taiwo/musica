@@ -58,7 +58,7 @@ useEffect(() => {
 <div className="user-buttons">
 
 
-<Link  to="/message" className="view-messages settings">
+<Link  to="/Answers" className="view-messages settings">
 <span>View Messages</span> <span><img src={arrow } alt="" className='share' /></span>
 </Link>
 

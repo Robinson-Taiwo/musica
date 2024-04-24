@@ -1,5 +1,5 @@
 .a-container{
-    background: linear-gradient(360deg, hsla(217, 77%, 63%, 1) 0%, hsla(299, 100%, 50%, 1) 100%);
+    background: linear-gradient(360deg, hsla(217, 77%, 63%, 1) 0%, hsl(299, 100%, 50%) 100%);
     @apply h-fit relative items-center flex justify-center flex-col pt-[1rem]
 }
 

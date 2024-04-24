@@ -1,0 +1,44 @@
+.hints-header{
+    @apply font-bold  flex items-center justify-center  text-center text-[1.2rem]  mt-[1rem]
+}
+
+.hints-question{
+    @apply   mt-[1.5rem] flex flex-col gap-[1.5rem]
+}
+
+.hint-que p{
+    @apply text-[0.95rem] font-medium
+}
+
+.hint-que{ 
+    @apply flex flex-col 
+}
+
+.hint-input{
+    border: 0.1px outset  hsl(299, 100%, 50%) ;
+    @apply bg-transparent  w-[80%] h-[2.5rem] rounded-lg  mt-[0.5rem] text-[0.8rem] px-[1rem]
+}
+
+.hint-notices{
+    @apply text-[0.7rem] 
+}
+
+.submit-clues{
+        background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%);
+        @apply rounded-3xl py-[0.6rem]
+        w-[80%]
+    
+    
+    
+}
+
+/* .view-messagessd{
+    background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%)!important;
+    @apply py-[0.8rem] rounded-3xl text-[0.95rem] text-white font-medium desktop:py-[1rem] desktop:text-[0.9rem] mt-[2rem] w-[100%] flex flex-row  gap-[0.5rem]
+}
+
+ */
+
+ .position-clues-btn{
+    @apply flex items-center justify-center w-[100%]
+ }

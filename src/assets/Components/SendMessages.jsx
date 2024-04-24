@@ -6,25 +6,49 @@ import send from "/icons/send.svg"
 
 import "./SendMessages.css"
 import AnonymousModal from './Anonymous/AnonymousModal'
+import ChoiceModal from './Anonymous/ChoiceModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { addMessage } from './Anonymous/Store/MessageSlice'
 
 const SendMessages = () => {
 
 // const [messageLength, setMessageLenth] =useState(0)
 const [message, setMessage] = useState("")
 const [modal, setModal] = useState(false);
+const [choiceModal, setChoiceModal] = useState(false)
 const [showModal, setsSowModal] = useState(false)
-
-const maxLengths = 508
-const remainingCharacter = maxLengths - message.length
-
-
-const openModal = (event)=>{
-    event.preventDefault()
-   setsSowModal(!showModal)
-   console.log(showModal)
-}
+const [toastMessage, setToastMessage] = useState("")
+// const [messages, setMessages] = useState([])
 
 
+// const [message, setMessage] = useState("");
+// const [toastMessage, setToastMessage] = useState("");
+const messages = useSelector(state => state.messages); // Correctly access the messages state
+const dispatch = useDispatch();
+
+const maxLengths = 508;
+const remainingCharacter = maxLengths - message.length;
+
+const openModal = (event) => {
+    event.preventDefault();
+
+    const timeSent = new Date().toLocaleTimeString();
+
+    const dateSent = new Date().toLocaleDateString()
+
+    if (message.trim() !== "") {
+        const newMessage = {
+            message: message, 
+            id: messages.length, // Use messages.length as the ID
+            time: timeSent,
+            date: dateSent
+        };
+        dispatch(addMessage(newMessage));
+        setMessage("");
+    }
+};
+
+console.log(messages);
 
 
   return (
@@ -33,17 +57,32 @@ const openModal = (event)=>{
 <section className="a-container">
 
 
-    {showModal ? <AnonymousModal modal={showModal} /> : ""} 
+
+    {showModal ? <AnonymousModal choiceModal={choiceModal} setChoiceModal={setChoiceModal} setShowModal={setsSowModal} modal={showModal} /> : ""} 
+
+
+    {/* {choiceModal && <ChoiceModal showModal={modal} />} */}
+
+
+   
 
 
     <div className="second-layers">
 
-<h1 className="say-something">
-    Say Something..
+<h1 className={!choiceModal ? "say-something" : "fill-form" }>
+   {!choiceModal ? "Say Something.." : "Clues Form"}
 </h1>
 
 
-<form action="" onSubmit={openModal} className="message-form">
+
+<div className="toat-messages">
+{!choiceModal ? toastMessage : ""}
+
+</div>
+
+
+
+{choiceModal ? <ChoiceModal  choiceModal ={choiceModal} toastMessage={toastMessage} setToastMessage={setToastMessage} setChoiceModal={setChoiceModal} /> : (<form action="" onSubmit={openModal} className="message-form">
 
 <label htmlFor="#saySomething">
 
@@ -77,7 +116,11 @@ By using this service, you agree to our Privacy Policy, Terms of Service and any
 </p>
 
 
-</form>
+</form>) }
+
+
+
+
 
 <p className="wyt">
 Say what do you think about oluwarotimi__ or Leave a feedback for oluwarotimi__ <span className='bold-white' >anonymously</span> using the form <span className='bold-white' >above</span> .. 🥰
