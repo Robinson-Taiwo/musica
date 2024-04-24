@@ -1,6 +1,10 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
+
+
+
+
 import React, { useState } from 'react'
 import send from "/icons/send.svg"
 
@@ -8,7 +12,7 @@ import "./SendMessages.css"
 import AnonymousModal from './Anonymous/AnonymousModal'
 import ChoiceModal from './Anonymous/ChoiceModal'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMessage } from './Anonymous/Store/MessageSlice'
+import { addClues, addMessage } from './Anonymous/Store/MessageSlice'
 
 const SendMessages = () => {
 
@@ -19,7 +23,21 @@ const [choiceModal, setChoiceModal] = useState(false)
 const [showModal, setsSowModal] = useState(false)
 const [toastMessage, setToastMessage] = useState("")
 // const [messages, setMessages] = useState([])
+const [nameInitial, setNameInitial] = useState("")
+const [friendship, setFriendship] = useState("")
+const [close, setClose] = useState("")
+const [specialClues, setSpecialClues] = useState("")
+const [completed, setCompleted] = useState("")
 
+
+
+
+const [clues, setClues] = useState({
+    nameInitial: "",
+    friendship: "",
+    closeRelation: "",
+    specialClues: ""
+});
 
 // const [message, setMessage] = useState("");
 // const [toastMessage, setToastMessage] = useState("");
@@ -29,8 +47,8 @@ const dispatch = useDispatch();
 const maxLengths = 508;
 const remainingCharacter = maxLengths - message.length;
 
-const openModal = (event) => {
-    event.preventDefault();
+const openModal = () => {
+    // event.preventDefault();
 
     const timeSent = new Date().toLocaleTimeString();
 
@@ -43,13 +61,30 @@ const openModal = (event) => {
             time: timeSent,
             date: dateSent
         };
-        dispatch(addMessage(newMessage));
-        setMessage("");
+
+
+    dispatch(addMessage(newMessage));
+    setMessage("");
+
+ 
+    
+
+// setsSowModal(true)
+setsSowModal(false)
+
+
+
     }
 };
 
 console.log(messages);
 
+  
+  const handleCluesSubmit = () => {
+    dispatch(addClues(clues));
+    setToastMessage("Clues Submitted");
+    setChoiceModal(false);
+};
 
   return (
 
@@ -58,7 +93,7 @@ console.log(messages);
 
 
 
-    {showModal ? <AnonymousModal choiceModal={choiceModal} setChoiceModal={setChoiceModal} setShowModal={setsSowModal} modal={showModal} /> : ""} 
+    {showModal ? <AnonymousModal choiceModal={choiceModal}  setChoiceModal={setChoiceModal} setShowModal={setsSowModal} openModal={openModal} modal={showModal} /> : ""} 
 
 
     {/* {choiceModal && <ChoiceModal showModal={modal} />} */}
@@ -80,9 +115,10 @@ console.log(messages);
 
 </div>
 
+{/* {console.log(completed)} */}
 
 
-{choiceModal ? <ChoiceModal  choiceModal ={choiceModal} toastMessage={toastMessage} setToastMessage={setToastMessage} setChoiceModal={setChoiceModal} /> : (<form action="" onSubmit={openModal} className="message-form">
+{choiceModal ? <ChoiceModal  choiceModal ={choiceModal} toastMessage={toastMessage} setToastMessage={setToastMessage} setChoiceModal={setChoiceModal} setClues={setClues} clues={clues} handleCluesSubmit={handleCluesSubmit}  openModal={openModal} /> : (<div action="" onSubmit={openModal} className="message-form">
 
 <label htmlFor="#saySomething">
 
@@ -105,7 +141,7 @@ onChange={(e)=>setMessage(e.target.value)}
 
 <div className="send-message">
 
-<button type='submit' className="view-messagessd settings ">
+<button type='submit' onClick={()=>setsSowModal(true)} className="view-messagessd settings ">
    <span>send Message</span> <span><img src={send}  alt="" className='sharedd' /></span>
 </button>
 
@@ -116,7 +152,7 @@ By using this service, you agree to our Privacy Policy, Terms of Service and any
 </p>
 
 
-</form>) }
+</div>) }
 
 
 
@@ -169,3 +205,4 @@ Guide to write perfect Anonymous Messages by Kubool:
 }
 
 export default SendMessages
+

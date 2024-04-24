@@ -1,21 +1,25 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import close from "/icons/close.svg"
 
 import "./AnonymousModal.css"
 import ChoiceModal from './ChoiceModal'
 
-const AnonymousModal = ({modal, setShowModal, choiceModal, setChoiceModal}) => {
+const AnonymousModal = ({modal, setShowModal, choiceModal, setChoiceModal, openModal  }) => {
+
+
+// const [nextt, setNextt]= useState("")
+const [warning, setWarning]= useState("")
 
 
 const next = ()=>{
 
-setChoiceModal(true)
-setShowModal(false)
-
+ setChoiceModal(true)
+ setShowModal(false)
 
 }
+
 
 
 
@@ -29,6 +33,9 @@ setShowModal(false)
  <img src={close} alt="" />
 </div>
 
+<div className="abs">
+ {warning}
+</div>
 
 <h3 className="modal-que">
 
@@ -38,7 +45,7 @@ setShowModal(false)
 
 <div className="modal-options">
 
-<input type="radio" name="anonymous" id="a-check" className='checkbox' />
+<input value="send" onClick={()=>openModal()} type="radio" name="anonymous" id="a-check" className='checkbox' />
 
 <p className="modal-opt">
 Fully Anonymous
@@ -49,7 +56,7 @@ Fully Anonymous
 
 <div className="modal-options">
 
-<input type="radio" name="anonymous" id="a-check" className='checkbox' />
+<input value="dont" onClick={()=> next() } type="radio" name="anonymous" id="a-check" className='checkbox' />
 
 <p className="modal-opt">
 partly Anonumous
@@ -57,9 +64,9 @@ partly Anonumous
 
 </div>
 
-<div onClick={()=> next()} className="modal-next">
+{/* <div onClick={()=> next()} className="modal-next">
   Next
-</div>
+</div> */}
 
 
 
@@ -74,3 +81,4 @@ partly Anonumous
 }
 
 export default AnonymousModal
+

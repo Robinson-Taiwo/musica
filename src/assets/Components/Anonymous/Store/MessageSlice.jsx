@@ -3,7 +3,8 @@ import { persistReducer } from "redux-persist";
 import persistConfig from "./ReduxPersistConfig";
 
 const initialState = {
-    messages: []
+    messages: [],
+    clues: {} // Initialize clues state
 };
 
 const messageSlice = createSlice({
@@ -12,6 +13,9 @@ const messageSlice = createSlice({
     reducers: {
         addMessage: (state, action) => {
             state.messages.push(action.payload);
+        },
+        addClues: (state, action) => {
+            state.clues = action.payload;
         }
     }
 });
@@ -21,6 +25,5 @@ const persistedReducer = persistReducer(
     messageSlice.reducer
 );
 
-export const { addMessage } = messageSlice.actions;
+export const { addMessage, addClues } = messageSlice.actions;
 export default persistedReducer;
-

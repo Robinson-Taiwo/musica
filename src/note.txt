@@ -57,49 +57,502 @@ tee boy how far
 
 
 
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
+
+anonymous........
+
+
+
+
+import React, { useState } from 'react'
+import close from "/icons/close.svg"
+
+import "./AnonymousModal.css"
+import ChoiceModal from './ChoiceModal'
+
+const AnonymousModal = ({modal, setShowModal, choiceModal, setChoiceModal,completed, setCompleted, }) => {
+
+
+const [nextt, setNextt]= useState("")
+const [warning, setWarning]= useState("")
+
+
+const next = ()=>{
+
+  setCompleted(nextt)
+  console.log(completed)
+
+
+if (nextt === ""){
+  console.log(completed)
+
+ setWarning("please choose an option")
+
+ setTimeout(() => {
+  setWarning("")
+}, 5000);
+}
+
+
+
+
+
+if (nextt === "send"){
+  setChoiceModal(false)
+  setCompleted("send")
+  console.log("it is nexting")
+  console.log(completed)
+}
+
+
+if (nextt === "dont"){
+  setChoiceModal(true)
+  setShowModal(false)
+  console.log(completed)
+
+}
+
+}
+
+
+
+
+  return (
+    <div className='showModal' >
+
+      
+<div className="modal-box">
+
+<div onClick={()=>setShowModal(!modal)}  className="close-modal-box">
+ <img src={close} alt="" />
+</div>
+
+<div className="abs">
+ {warning}
+</div>
+
+<h3 className="modal-que">
+
+  How do you want to send this message
+</h3>
+
+
+<div className="modal-options">
+
+<input value="send" onClick={(e)=> setNextt(e.target.value) } type="radio" name="anonymous" id="a-check" className='checkbox' />
+
+<p className="modal-opt">
+Fully Anonymous
+</p>
+
+</div>
+
+
+<div className="modal-options">
+
+<input value="dont" onClick={(e)=> setNextt(e.target.value)} type="radio" name="anonymous" id="a-check" className='checkbox' />
+
+<p className="modal-opt">
+partly Anonumous
+</p>
+
+</div>
+
+<div onClick={()=> next()} className="modal-next">
+  Next
+</div>
+
+
+
+</div>
+
+
+
+
+
+    </div>
+  )
+}
+
+export default AnonymousModal
+
+
+
+
+
+choiceModal.....................................................................
+
+import React from 'react'
+import "./ChoiceModal.css"
+
+const ChoiceModal = ({choiceModal, setChoiceModal, toastMessage, setToastMessage, friendship, setFriendship, close, setClose, specialClues, setSpecialClues, nameInitial, setNameInitial, completed, setCompleted  }) => {
+
+
+
+
+  const complete= ()=>{
+  }
+
+const SubmitClues = (event)=>{
+  // event.preventDefault()
+
+if (nameInitial || friendship || close ||  specialClues ){
+  setCompleted("send")
+  setChoiceModal(false)
+  setTimeout(() => {
+    setCompleted("")
+  }, 1500);
+
+}
+
+// if (completed === "send"){
+
+//   setTimeout(() => {
+//     setToastMessage("Message Sent with Clues")
+//   }, 4000);
+// }
+
+
+}
+
+
+
+
+  return (
+    <div className='hints-form' >
+
+    
+      
+      
+      <h1 className='hints-header' >fill the form Below to give @Oluwarotimi__ some clues about yourself</h1>
+     
+    
+    <div className="hints-question">
+
+
+<div className="hint-que">
+ <p> What is an initial of any of your Name</p>
+
+<input value={nameInitial} onChange={(e)=> setNameInitial(e.target.value) } className='hint-input' type="text" /> 
+
+</div>
+
+<div className="hint-que">
+ <p> Rate your friendship on a scale of 1-10</p>
+
+<input  value={friendship} onChange={(e)=> setFriendship(e.target.value) }  className='hint-input' type="text" /> 
+
+</div>
+
+
+
+<div className="hint-que">
+ <p> How close are you to @Oluwarotimi__</p>
+ <span className='hint-notices' >(E.g close, not too close, very close)</span>
+
+<input   value={close} onChange={(e)=> setClose(e.target.value) }  className='hint-input' type="text" /> 
+
+</div>
+
+
+<div className="hint-que">
+ <p> Any Special Clue??</p>
+ <span className='hint-notices'>(Riddle @Oluwarotimi__ or descrive a special clue)</span>
+
+<input  value={specialClues} onChange={(e)=> setSpecialClues(e.target.value) }  className='hint-input' type="text" /> 
+
+</div >
+
+
+<div className='position-clues-btn' >
+<button  onClick={()=>SubmitClues()} className="submit-clues">Submit Clues</button>
+
+</div>
+
+
+
+    </div>
+    
+    
+    
+    </div>
+  )
+}
+
+export default ChoiceModal
+
+
+
+
+
+
+
+
+
+
+new send messages.................
+
+
+
+
 import React, { useState } from 'react';
 import send from "/icons/send.svg";
 import "./SendMessages.css";
 import AnonymousModal from './Anonymous/AnonymousModal';
 import ChoiceModal from './Anonymous/ChoiceModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage } from './Anonymous/Store/MessageSlice';
+import { addMessage, addClues } from './Anonymous/Store/MessageSlice'; // Assuming you have an addClues action
 
 const SendMessages = () => {
     const [message, setMessage] = useState("");
     const [toastMessage, setToastMessage] = useState("");
-    const messages = useSelector(state => state.messages); // Correctly access the messages state
+    const [showAnonymousModal, setShowAnonymousModal] = useState(false);
+    const [showChoiceModal, setShowChoiceModal] = useState(false);
+    const [selectedOption, setSelectedOption] = useState("");
+    const [clues, setClues] = useState({
+        nameInitial: "",
+        friendship: "",
+        closeRelation: "",
+        specialClues: ""
+    });
     const dispatch = useDispatch();
+    const messages = useSelector(state => state.messages);
 
     const maxLengths = 508;
     const remainingCharacter = maxLengths - message.length;
 
-    const openModal = (event) => {
-        event.preventDefault();
-
+    const handleMessageSend = () => {
         const timeSent = new Date().toLocaleTimeString();
+        const dateSent = new Date().toLocaleDateString();
+        
+        const newMessage = {
+            message: message,
+            id: Date.now(),
+            time: timeSent,
+            date: dateSent
+        };
 
-        if (message.trim() !== "") {
-            const newMessage = {
-                message: message, 
-                id: messages.length, // Use messages.length as the ID
-                time: timeSent
-            };
-            dispatch(addMessage(newMessage));
-            setMessage("");
+        dispatch(addMessage(newMessage));
+        setMessage("");
+        setToastMessage("Message Sent with Clues");
+        setShowAnonymousModal(false);
+    };
+
+    const handleCluesSubmit = () => {
+        dispatch(addClues(clues));
+        setToastMessage("Clues Submitted");
+        setShowChoiceModal(false);
+    };
+
+    const handleAnonymousModalNext = () => {
+
+        if (selectedOption === "fullyAnonymous") {
+            setShowAnonymousModal(true);
+        } else if (selectedOption === "partlyAnonymous") {
+            setShowChoiceModal(true);
+        } else {
+            alert("Please choose an option");
         }
     };
 
+    const onSendMessage = (e)=>{
+        e.preventDefault
+        if (message.trim() !== "") {
+
+            setShowAnonymousModal(true)
+        }else{
+            setToastMessage("Please Type a Message")
+        }
+
+
+    }
+    
     console.log(messages);
 
     return (
         <section className="a-container">
-            {/* Other JSX content */}
+
+
+            {showAnonymousModal && (
+                <AnonymousModal
+                    closeModal={() =>{ setShowAnonymousModal(false)
+                    setShowChoiceModal(true)
+                    }
+                    }
+                    handleMessageSend={handleMessageSend}
+                />
+            )}
+            {showChoiceModal && (
+                <ChoiceModal
+                    closeModal={() => setShowChoiceModal(false)}
+                    handleCluesSubmit={handleCluesSubmit}
+                    clues={clues}
+                    setClues={setClues}
+                />
+            )}
+            <div className="second-layers">
+                <h1 className="say-something">Say Something..</h1>
+                <div className="toat-messages">{toastMessage}</div>
+                <form action="">
+                    <textarea
+                        name=""
+                        placeholder="Leave a message here.."
+                        maxLength={maxLengths}
+                        id="text-area"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                    <p className="character-left">{remainingCharacter} characters remaining</p>
+                    <div className="horizontal-line"></div>
+                    <div className="send-message">
+                        <button type="button" className="view-messagessd settings" onClick={onSendMessage}>
+                            <span>Send Message</span>
+                            <span><img src={send} alt="" className="sharedd" /></span>
+                        </button>
+                    </div>
+                    <p className="send-notice">
+                        By using this service, you agree to our Privacy Policy, Terms of Service and any related policies.
+                    </p>
+                </form>
+                <p className="wyt">
+Say what do you think about oluwarotimi__ or Leave a feedback for oluwarotimi__ <span className='bold-white' >anonymously</span> using the form <span className='bold-white' >above</span> .. 🥰
+Thank You!! 😍😊
+</p>
+
+
+<p className="anonymous-guide">
+<span className="bold-white">
+Guide to write perfect Anonymous Messages by Kubool:
+</span> With the help of our anonymous message sender named Kubool now, you can easily message your heart's desire to your friends, family members, and anyone you know who are on Kubool. We care about our users and thus we are suggesting what you may choose to tell them anonymously. Everyone in this world loves to get affection from their loved ones be it their parents, partners, or close friends. Tell them how much they matter to you and how much you care for them! These compliments will increase their positive feelings and they will feel your friendly love from the core of their heart. If you feel like there is something you do not like out of them, you may choose to constructively criticize them about it. That is completely fine and in fact when constructive criticism is delivered right, one can develop themselves accordingly to become a better person as a whole. Make sure to be on point with the criticism and make sure that it does not become an insult at the end. You may also choose to suggest things that will help them become a better person as a whole! Future predictions are tough, as shown by the available future predictions apps just like the love predictions! No one knows what is going to happen next. But, it is always good to be aware of your cons, focuses on your pros, and transforming your cons to your pros. That is exactly what good constructive criticism helps you achieve! We hope you liked this little guide on how you can write better anonymous messages which are going to be very productive. Don't forget to play by the rules, keep it clean out there. 😉
+
+</p>
+
+
+
+
+    </div>
+
+    <div className="anonymous-footer">
+
+<div className="owner-footer">
+© <span className='text-white' > 2024</span> - Oluwarotimi 
+
+</div>
+
+<div className="footer-links">
+<p>Home</p>
+<div className="v-lines">
+</div>
+<p>Disclaimer</p>
+<div className="v-lines">
+</div>
+
+<p>Contact us</p>
+
+</div>
+
+
+
+</div>
+
         </section>
     );
 };
 
 export default SendMessages;
+
+
+
+
+
+new choiceModal modal ------------------
+
+
+import React from 'react';
+import close from "/icons/close.svg";
+import "./AnonymousModal.css";
+
+const ChoiceModal = ({ closeModal, handleCluesSubmit, clues, setClues }) => {
+    const handleChange = (e) => {
+        setClues({ ...clues, [e.target.name]: e.target.value });
+    };
+
+    return (
+        <div className="showModal">
+            <div className="modal-box">
+                <div onClick={closeModal} className="close-modal-box">
+                    <img src={close} alt="" />
+                </div>
+                <h3 className="modal-que">Fill in the Clues Form</h3>
+                <div className="form-group">
+                    <label htmlFor="nameInitial">Name Initial:</label>
+                    <input type="text" id="nameInitial" name="nameInitial" value={clues.nameInitial} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="friendship">Friendship Level:</label>
+                    <input type="text" id="friendship" name="friendship" value={clues.friendship} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="closeRelation">Close Relationship:</label>
+                    <input type="text" id="closeRelation" name="closeRelation" value={clues.closeRelation} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="specialClues">Special Clues:</label>
+                    <textarea id="specialClues" name="specialClues" value={clues.specialClues} onChange={handleChange}></textarea>
+                </div>
+                <div onClick={handleCluesSubmit} className="modal-next">
+                    Submit Clues
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ChoiceModal;
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import close from "/icons/close.svg";
+import "./AnonymousModal.css";
+
+const ChoiceModal = ({ closeModal, handleCluesSubmit, clues, setClues }) => {
+    const handleChange = (e) => {
+        setClues({ ...clues, [e.target.name]: e.target.value });
+    };
+
+    return (
+        <div className="showModal">
+            <div className="modal-box">
+                <div onClick={closeModal} className="close-modal-box">
+                    <img src={close} alt="" />
+                </div>
+                <h3 className="modal-que">Fill in the Clues Form</h3>
+                <div className="form-group">
+                    <label htmlFor="nameInitial">Name Initial:</label>
+                    <input type="text" id="nameInitial" name="nameInitial" value={clues.nameInitial} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="friendship">Friendship Level:</label>
+                    <input type="text" id="friendship" name="friendship" value={clues.friendship} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="closeRelation">Close Relationship:</label>
+                    <input type="text" id="closeRelation" name="closeRelation" value={clues.closeRelation} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="specialClues">Special Clues:</label>
+                    <textarea id="specialClues" name="specialClues" value={clues.specialClues} onChange={handleChange}></textarea>
+                </div>
+                <div onClick={handleCluesSubmit} className="modal-next">
+                    Submit Clues
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ChoiceModal;
