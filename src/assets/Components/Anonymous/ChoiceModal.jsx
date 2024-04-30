@@ -31,7 +31,7 @@ const SubmitClues = (e) => {
       setWarning("");
     }, 3000);
   }
-  
+
   // handleCluesSubmit()
   openModal()
 
@@ -73,7 +73,7 @@ console.log(clues.specialClues === "" )
 
 
 <div className="hint-que">
- <label htmlFor='nameInitial'> What is an initial of any of your Name</label>
+ <label htmlFor='nameInitial'> Your Hobbies</label>
 
 <input type="text" id="nameInitial" name="nameInitial" className='hint-input' value={clues.nameInitial} onChange={handleChange}/> 
 

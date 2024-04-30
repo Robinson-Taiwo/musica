@@ -81,7 +81,7 @@ const Clues = ({ clues, setClues, closeRelation, friendship, specialClues, onClo
         </div> )  : (    <div className='clue-container' >
     <div className="initals">
 
-<p className="senders-init">Sender's Initials:</p>
+<p className="senders-init">Sender's Hobbies:</p>
 
 
 <p className="sender-initial">{initials}</p>
