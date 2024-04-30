@@ -142,7 +142,10 @@ useEffect(() => {
 message.trim() !== "" ?
 
     setsSowModal(true) 
-    : setWarning("Please Type a Message before sending message")
+    : setWarning("Please Type a Message before sending message") 
+     setTimeout(() => {
+        setWarning("")
+      }, 3000);
 
 
  }

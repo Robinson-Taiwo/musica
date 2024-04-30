@@ -39,7 +39,7 @@ const [redirecting, setRedirecting] = useState(false);
   useEffect(() => {
     if (redirecting) {
       const timeout = setTimeout(() =>  navigate('/Message', { replace: true })
-      , 3000); // Redirect after 3 seconds
+      , 2000); // Redirect after 3 seconds
 
       // Cleanup function to clear timeout on component unmount
     //   return () => clearTimeout(timeout);
@@ -72,7 +72,7 @@ e.preventDefault()
             setSuccessMessage('You are successfully logged in');
             setTimeout(() => {
                 setSuccessMessage("")
-              }, 9000);
+              }, 3000);
           }
       
           // Clear form data
