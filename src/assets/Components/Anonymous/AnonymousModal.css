@@ -6,7 +6,7 @@
 
 .modal-box{
     border: 1px solid  hsla(299, 100%, 50%, 1);
-    @apply w-[80%] h-[30%] relative rounded-lg bg-[#250933] 
+    @apply w-[80%] relative rounded-lg bg-[#250933]  pb-[4rem]
 }
 
 .close-modal-box{
@@ -15,7 +15,7 @@
  }
 
  .modal-que{
-    @apply text-[0.9rem] mt-[3rem] w-[100]  flex items-center justify-center  mb-[1rem]
+    @apply text-[01.1rem] mt-[3rem] w-[100]  flex items-center text-center  justify-center  mb-[1rem] font-bold
  }
 
 /* .checkbox{
@@ -32,4 +32,9 @@
 
 .abs{
     @apply absolute text-[0.85rem] top-[1rem] left-[25%] text-[red]
+}
+
+
+.modal-opt{
+    @apply font-medium text-[1.1rem]
 }

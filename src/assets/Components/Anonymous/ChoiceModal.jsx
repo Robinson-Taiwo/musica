@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 
-import React from 'react'
+import React, { useState } from 'react'
 import "./ChoiceModal.css"
 
 const ChoiceModal = ({choiceModal, setChoiceModal, handleCluesSubmit, clues, openModal, setClues }) => {
@@ -14,7 +14,23 @@ const ChoiceModal = ({choiceModal, setChoiceModal, handleCluesSubmit, clues, ope
     setClues({ ...clues, [e.target.name]: e.target.value });
 };
 
+const [warning, setWarning]= useState("")
+
+
 const SubmitClues = (e) => {
+
+
+  if (clues.nameInitial === "" ||  clues.friendship === "" || clues.closeRelation === "" || clues.specialClues === ""   ){
+
+setWarning("Please fill up all the fields before proceeding")
+
+setTimeout(() => {
+  setWarning("")
+}, 3000);
+
+  
+  }
+  
 
 
 if (clues.nameInitial ||  clues.friendship || clues.closeRelation || clues.specialClues  ){
@@ -42,7 +58,9 @@ console.log(clues)
   return (
     <div className='hints-form' >
 
-    
+    <div className="toatss-messages">
+{warning}
+    </div>
       
       
       <h1 className='hints-header' >fill the form Below to give @Oluwarotimi__ some clues about yourself</h1>
@@ -61,7 +79,7 @@ console.log(clues)
 <div className="hint-que">
  <label htmlFor='friendship'  > Rate your friendship on a scale of 1-10</label>
 
-<input  type="text" id="friendship" name="friendship" className='hint-input' value={clues.friendship} onChange={handleChange} /> 
+<input  type="number" id="friendship" name="friendship" className='hint-input' value={clues.friendship} onChange={handleChange} /> 
 
 </div>
 
@@ -78,7 +96,7 @@ console.log(clues)
 
 <div className="hint-que">
  <label> Any Special Clue??</label>
- <span className='hint-notices'>(Riddle @Oluwarotimi__ or descrive a special clue)</span>
+ <span className='hint-notices'>(Riddle @Oluwarotimi__ or describe a special clue)</span>
 
 <input id="specialClues" name="specialClues" value={clues.specialClues} onChange={handleChange} className='hint-input' type="text" /> 
 

@@ -42,3 +42,7 @@
  .position-clues-btn{
     @apply flex items-center justify-center w-[100%]
  }
+
+ .toatss-messages{
+    @apply flex w-[100%] items-center justify-center relative top-[-2rem] text-[red] font-bold  text-center px-[1rem]
+}

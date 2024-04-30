@@ -5,7 +5,7 @@
 
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import send from "/icons/send.svg"
 
 import "./SendMessages.css"
@@ -13,6 +13,8 @@ import AnonymousModal from './Anonymous/AnonymousModal'
 import ChoiceModal from './Anonymous/ChoiceModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { addClues, addMessage } from './Anonymous/Store/MessageSlice'
+import { useNavigate } from 'react-router-dom';
+
 
 const SendMessages = () => {
 
@@ -28,6 +30,8 @@ const [friendship, setFriendship] = useState("")
 const [close, setClose] = useState("")
 const [specialClues, setSpecialClues] = useState("")
 const [completed, setCompleted] = useState("")
+const [warning, setWarning]= useState("")
+const [redirecting, setRedirecting] = useState(false);
 
 
 
@@ -43,6 +47,8 @@ const [clues, setClues] = useState({
 // const [toastMessage, setToastMessage] = useState("");
 const messages = useSelector(state => state.messages); // Correctly access the messages state
 const dispatch = useDispatch();
+  let navigate = useNavigate();
+
 
 const maxLengths = 508;
 const remainingCharacter = maxLengths - message.length;
@@ -75,6 +81,7 @@ const openModal = () => {
   setToastMessage("")
 }, 3000);
     setMessage("");
+    setRedirecting(true)
 
  
     
@@ -89,6 +96,16 @@ setsSowModal(false)
 
 console.log(messages);
 
+useEffect(() => {
+    if (redirecting) {
+      const timeout = setTimeout(() =>  navigate('/Profile', { replace: true })
+      , 3000); // Redirect after 3 seconds
+
+      // Cleanup function to clear timeout on component unmount
+    //   return () => clearTimeout(timeout);
+    }
+  }, [redirecting, navigate]);
+
   
   const handleCluesSubmit = () => {
     dispatch(addClues(clues));
@@ -98,6 +115,17 @@ console.log(messages);
   setToastMessage("")
 }, 3000);
 };
+
+
+ const showSow = () =>{
+
+message.trim() !== "" ?
+
+    setsSowModal(true) 
+    : setWarning("Please Type a Message before sending message")
+
+
+ }
 
   return (
 
@@ -129,6 +157,11 @@ console.log(messages);
 
 </div>
 
+<div className="toatss-messages">
+    {/* {toastMessage} */}
+{warning}
+</div>
+
 {/* {console.log(completed)} */}
 
 
@@ -155,7 +188,7 @@ onChange={(e)=>setMessage(e.target.value)}
 
 <div className="send-message">
 
-<button type='submit' onClick={()=>setsSowModal(true)} className="view-messagessd settings ">
+<button type='submit' onClick={()=>showSow()} className="view-messagessd settings ">
    <span>send Message</span> <span><img src={send}  alt="" className='sharedd' /></span>
 </button>
 
