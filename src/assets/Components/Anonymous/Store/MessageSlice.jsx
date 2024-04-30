@@ -15,7 +15,7 @@ const messageSlice = createSlice({
             state.messages.push(action.payload);
         },
         addClues: (state, action) => {
-            state.clues = action.payload;
+            state.messages.push(action.payload);
         }
     }
 });

@@ -59,11 +59,21 @@ const openModal = () => {
             message: message, 
             id: messages.length, // Use messages.length as the ID
             time: timeSent,
-            date: dateSent
+            date: dateSent,
+            name: clues.nameInitial,
+            friendship: clues.friendship,
+            closeRelation: clues.closeRelation,
+            specialClues: clues.specialClues,
         };
 
 
     dispatch(addMessage(newMessage));
+    setToastMessage("Clues Submitted with anonyous message ");
+    setChoiceModal(false);
+    
+    setTimeout(() => {
+  setToastMessage("")
+}, 3000);
     setMessage("");
 
  
@@ -82,8 +92,11 @@ console.log(messages);
   
   const handleCluesSubmit = () => {
     dispatch(addClues(clues));
-    setToastMessage("Clues Submitted");
+    setToastMessage("Clues Submitted with anonymous message");
     setChoiceModal(false);
+    setTimeout(() => {
+  setToastMessage("")
+}, 3000);
 };
 
   return (
@@ -93,7 +106,7 @@ console.log(messages);
 
 
 
-    {showModal ? <AnonymousModal choiceModal={choiceModal}  setChoiceModal={setChoiceModal} setShowModal={setsSowModal} openModal={openModal} modal={showModal} /> : ""} 
+    {showModal ? <AnonymousModal choiceModal={choiceModal}  setChoiceModal={setChoiceModal} setShowModal={setsSowModal} toastMessage={toastMessage} setToastMessage={setToastMessage}  openModal={openModal} modal={showModal} /> : ""} 
 
 
     {/* {choiceModal && <ChoiceModal showModal={modal} />} */}
@@ -111,6 +124,7 @@ console.log(messages);
 
 
 <div className="toat-messages">
+    {/* {toastMessage} */}
 {!choiceModal ? toastMessage : ""}
 
 </div>

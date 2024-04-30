@@ -5,7 +5,7 @@
 import React from 'react'
 import "./ChoiceModal.css"
 
-const ChoiceModal = ({choiceModal, setChoiceModal, handleCluesSubmit, clues, setClues }) => {
+const ChoiceModal = ({choiceModal, setChoiceModal, handleCluesSubmit, clues, openModal, setClues }) => {
 
 
 
@@ -13,6 +13,28 @@ const ChoiceModal = ({choiceModal, setChoiceModal, handleCluesSubmit, clues, set
   const handleChange = (e) => {
     setClues({ ...clues, [e.target.name]: e.target.value });
 };
+
+const SubmitClues = (e) => {
+
+
+if (clues.nameInitial ||  clues.friendship || clues.closeRelation || clues.specialClues  ){
+
+  // handleCluesSubmit()
+  openModal()
+
+    // Reset the state values of the input fields to empty strings
+    setClues({
+      nameInitial: "",
+      friendship: "",
+      closeRelation: "",
+      specialClues: ""
+    });
+
+}
+
+
+};
+
 
 console.log(clues)
 
@@ -30,41 +52,41 @@ console.log(clues)
 
 
 <div className="hint-que">
- <p> What is an initial of any of your Name</p>
+ <label htmlFor='nameInitial'> What is an initial of any of your Name</label>
 
-<input value={clues.setNameInitial} onChange={(e)=> setNameInitial(e.target.value) } className='hint-input' type="text" /> 
+<input type="text" id="nameInitial" name="nameInitial" className='hint-input' value={clues.nameInitial} onChange={handleChange}/> 
 
 </div>
 
 <div className="hint-que">
- <p> Rate your friendship on a scale of 1-10</p>
+ <label htmlFor='friendship'  > Rate your friendship on a scale of 1-10</label>
 
-<input  value={friendship} onChange={(e)=> setFriendship(e.target.value) }  className='hint-input' type="text" /> 
+<input  type="text" id="friendship" name="friendship" className='hint-input' value={clues.friendship} onChange={handleChange} /> 
 
 </div>
 
 
 
 <div className="hint-que">
- <p> How close are you to @Oluwarotimi__</p>
+ <label htmlFor="closeRelation" > How close are you to @Oluwarotimi__</label>
  <span className='hint-notices' >(E.g close, not too close, very close)</span>
 
-<input   value={close} onChange={(e)=> setClose(e.target.value) }  className='hint-input' type="text" /> 
+<input type="text" id="closeRelation" name="closeRelation" value={clues.closeRelation} onChange={handleChange} className='hint-input'  /> 
 
 </div>
 
 
 <div className="hint-que">
- <p> Any Special Clue??</p>
+ <label> Any Special Clue??</label>
  <span className='hint-notices'>(Riddle @Oluwarotimi__ or descrive a special clue)</span>
 
-<input  value={specialClues} onChange={(e)=> setSpecialClues(e.target.value) }  className='hint-input' type="text" /> 
+<input id="specialClues" name="specialClues" value={clues.specialClues} onChange={handleChange} className='hint-input' type="text" /> 
 
 </div >
 
 
 <div className='position-clues-btn' >
-<button  className="submit-clues">Submit Clues</button>
+<button  onClick={()=>SubmitClues()}  className="submit-clues">Submit Clues</button>
 
 </div>
 

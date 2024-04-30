@@ -6,7 +6,7 @@ import close from "/icons/close.svg"
 import "./AnonymousModal.css"
 import ChoiceModal from './ChoiceModal'
 
-const AnonymousModal = ({modal, setShowModal, choiceModal, setChoiceModal, openModal  }) => {
+const AnonymousModal = ({modal, setShowModal, choiceModal, setChoiceModal, toastMessage, setToastMessage, openModal  }) => {
 
 
 // const [nextt, setNextt]= useState("")
@@ -20,6 +20,15 @@ const next = ()=>{
 
 }
 
+
+const fully = ()=>{
+
+  openModal()
+  setToastMessage("Message sent without Clues")
+
+  
+ 
+ }
 
 
 
@@ -45,7 +54,7 @@ const next = ()=>{
 
 <div className="modal-options">
 
-<input value="send" onClick={()=>openModal()} type="radio" name="anonymous" id="a-check" className='checkbox' />
+<input value="send" onClick={()=>fully()} type="radio" name="anonymous" id="a-check" className='checkbox' />
 
 <p className="modal-opt">
 Fully Anonymous

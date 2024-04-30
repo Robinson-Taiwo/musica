@@ -6,7 +6,7 @@
     @apply   mt-[1.5rem] flex flex-col gap-[1.5rem]
 }
 
-.hint-que p{
+.hint-que label{
     @apply text-[0.95rem] font-medium
 }
 

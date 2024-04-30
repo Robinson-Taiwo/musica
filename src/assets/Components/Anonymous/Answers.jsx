@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import "./Answers.css"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Clues from './Clues'
 
 const Answers = () => {
 
@@ -11,6 +12,8 @@ const Answers = () => {
 
 const [km, setKm] = useState(true)
 const messages = useSelector(state => state.messages); // Correctly access the messages state
+const [clues, setClues] = useState(false)
+const [selectedMessage, setSelectedMessage] = useState(null);
 
 
 console.log(messages)
@@ -19,7 +22,11 @@ console.log(messages)
     <div className='my-answers' >
 
 
-<div className="second-layers">
+<div className="second-layers min-h-[110vh] ">
+{/* 
+   {clues && <Clues clues={clues} setClues={setClues} specialClues={messages.specialClues}  />} */}
+
+   {console.log(messages.specialClues)}
 
 <h1 className="my-answer">
             My Answers
@@ -28,6 +35,81 @@ console.log(messages)
         <p className="answers-subhead">
         👇 Scroll 👇 down to check out the messages that you have received
         </p>
+
+{/* 
+{ messages.message === "" && (<div className="message-template">
+
+<h1 className="message-temp-head">
+    Message:
+</h1>
+
+     <p className="message-temp-text">
+     Oops! 😅 No one has sent you a message in last 3 Days! Share your profile link and check back later again!  
+     </p>
+
+     <div className="message-temp-sender">
+        - Anonymous [13-04-2024 19:22 GMT]
+     </div>
+
+
+<div className="message-temp-options">
+<Link to="/Profile" className="share-response">
+    Share Response
+</Link>
+
+<div className="share-response">
+   More Options
+</div>
+
+<div className="share-response">
+   Check Clues
+</div>
+
+
+</div>
+
+
+        </div>) )
+
+} */}
+
+
+{messages.length === 0 && (
+          <div className="message-template">
+
+          <h1 className="message-temp-head">
+              Message:
+          </h1>
+          
+               <p className="message-temp-text mb-[2rem]">
+               Oops! 😅 No one has sent you a message in last 3 Days! Share your profile link and check back later again!  
+               </p>
+          
+               {/* <div className="message-temp-sender">
+                  - Anonymous [13-04-2024 19:22 GMT]
+               </div> */}
+          
+{/*           
+          <div className="message-temp-options">
+          <Link to="/Profile" className="share-response">
+              Share Response
+          </Link>
+          
+          <div className="share-response">
+             More Options
+          </div>
+          
+          <div className="share-response">
+             Check Clues
+          </div>
+          
+          
+          </div> */}
+          
+          
+                  </div>
+        )}
+
 
 
 <div className="answers-container">
@@ -58,10 +140,26 @@ console.log(messages)
       More Options
    </div>
    
-   <div className="share-response">
+   {/* <div onClick={()=>setClues(!clues)} className="share-response">
       Check for Clues
+
    </div>
-   
+    */}
+
+
+<button onClick={() => setSelectedMessage(message)} className="share-response">Check for Clues</button>
+
+
+  {/* Pass selected message to Clues component only if selectedMessage is not null */}
+  {selectedMessage && (
+          <Clues
+            closeRelation={selectedMessage.closeRelation}
+            friendship={selectedMessage.friendship}
+            specialClues={selectedMessage.specialClues}
+            clues={clues} setClues={setClues}
+            onClose={() => setSelectedMessage(null)}
+          />
+        )}
    
    </div>
    

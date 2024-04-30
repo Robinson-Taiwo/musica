@@ -102,5 +102,5 @@
 }
 
 .toat-messages{
-    @apply flex w-[100%] items-center justify-center relative top-[-2rem] text-[green] font-bold 
+    @apply flex w-[100%] items-center justify-center relative top-[-2rem] text-[green] font-bold  text-center px-[1rem]
 }

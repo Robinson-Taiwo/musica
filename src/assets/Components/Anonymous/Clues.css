@@ -1,0 +1,24 @@
+.clues-container{
+    /* background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%)!important; */
+
+    @apply h-[90vh] w-[98vw] fixed top-[5vh] right-0 bg-[#250933] px-[1rem] py-[1rem]
+}
+
+.clues-inside{
+    border: 0.01px solid #00eaff;
+    @apply h-[100%] w-[100%] rounded-lg relative
+
+}
+
+.clues-head{
+    @apply w-[100%] flex items-center justify-center mt-[1rem] text-[1.7rem] font-extrabold 
+}
+
+.clues-subheading{
+    @apply text-[0.8rem] w-[100%] items-center justify-center flex mt-[1rem] mb-[2rem]
+}
+
+.message-templatett{
+    /* border: 0.01px solid rgb(0, 234, 255); */
+    @apply rounded-xl w-[100%] text-[#e3dede] text-[0.85rem] flex  h-[50%] flex-col items-center justify-center   pt-[1rem] px-[0.8rem]
+}
