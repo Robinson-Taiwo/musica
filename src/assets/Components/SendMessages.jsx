@@ -14,7 +14,7 @@ import ChoiceModal from './Anonymous/ChoiceModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { addClues, addMessage } from './Anonymous/Store/MessageSlice'
 import { useNavigate } from 'react-router-dom';
-
+import { supabase } from './Supabase/supabase'
 
 const SendMessages = () => {
 
@@ -53,6 +53,24 @@ const dispatch = useDispatch();
 const maxLengths = 508;
 const remainingCharacter = maxLengths - message.length;
 
+
+const sendMessageToSupabase = async (messageData) => {
+    try {
+      // Insert data into the 'messages' table
+      const { data, error } = await supabase.from('messages').insert(messageData);
+  
+      if (error) {
+        console.error('Error inserting data:', error.message);
+      } else {
+        console.log('Data inserted successfully:', data);
+      }
+    } catch (error) {
+      console.error('Error inserting data:', error.message);
+    }
+  };
+  
+
+
 const openModal = () => {
     // event.preventDefault();
 
@@ -74,6 +92,8 @@ const openModal = () => {
 
 
     dispatch(addMessage(newMessage));
+    sendMessageToSupabase(newMessage);
+
     setToastMessage("Clues Submitted with anonyous message ");
     setChoiceModal(false);
     
@@ -189,7 +209,7 @@ onChange={(e)=>setMessage(e.target.value)}
 <div className="send-message">
 
 <button type='submit' onClick={()=>showSow()} className="view-messagessd settings ">
-   <span>send Message</span> <span><img src={send}  alt="" className='sharedd' /></span>
+   <span>Send Message</span> <span><img src={send}  alt="" className='sharedd' /></span>
 </button>
 
 </div>

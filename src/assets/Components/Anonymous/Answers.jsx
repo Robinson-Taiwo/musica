@@ -154,6 +154,7 @@ console.log(messages)
   {selectedMessage && (
           <Clues
             closeRelation={selectedMessage.closeRelation}
+            initials={selectedMessage.name}
             friendship={selectedMessage.friendship}
             specialClues={selectedMessage.specialClues}
             clues={clues} setClues={setClues}

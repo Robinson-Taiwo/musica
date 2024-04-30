@@ -78,3 +78,12 @@ input:focus{
 .agreement{
     @apply text-[0.7rem]
 }
+
+.toatL-messages{
+    @apply flex w-[100%] items-center justify-center relative  text-[green] font-bold  text-center px-[1rem]
+}
+
+
+.toatsSs-messages{
+    @apply flex w-[100%] items-center justify-center relative text-[red] font-bold  text-center px-[1rem]
+}

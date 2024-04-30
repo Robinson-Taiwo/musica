@@ -19,22 +19,19 @@ const [warning, setWarning]= useState("")
 
 const SubmitClues = (e) => {
 
-
-  if (clues.nameInitial === "" ||  clues.friendship === "" || clues.closeRelation === "" || clues.specialClues === ""   ){
-
-setWarning("Please fill up all the fields before proceeding")
-
-setTimeout(() => {
-  setWarning("")
-}, 3000);
-
+  if (
+    clues.nameInitial === "" ||
+    clues.friendship === "" ||
+    clues.closeRelation === "" ||
+    clues.specialClues === ""
+  ) {
+    setWarning("Please fill up all the fields before proceeding");
   
+    setTimeout(() => {
+      setWarning("");
+    }, 3000);
   }
   
-
-
-if (clues.nameInitial ||  clues.friendship || clues.closeRelation || clues.specialClues  ){
-
   // handleCluesSubmit()
   openModal()
 
@@ -45,14 +42,20 @@ if (clues.nameInitial ||  clues.friendship || clues.closeRelation || clues.speci
       closeRelation: "",
       specialClues: ""
     });
+  
 
-}
+
+
+
+
+
 
 
 };
 
 
-console.log(clues)
+
+console.log(clues.specialClues === "" )
 
 
   return (
@@ -63,7 +66,7 @@ console.log(clues)
     </div>
       
       
-      <h1 className='hints-header' >fill the form Below to give @Oluwarotimi__ some clues about yourself</h1>
+      <h1 className='hints-header' >Fill the form below to give @Oluwarotimi__ some clues about yourself</h1>
      
     
     <div className="hints-question">

@@ -20,9 +20,9 @@ const AppRoutes = () => {
 
             <Route path="/Anonymous" element={<Anonymous />} />
 
-            <Route path="/" element={<SendMessages/>} />
+            <Route path="/Message" element={<SendMessages/>} />
 
-            <Route path="/Login" element={<Login/>} />
+            <Route path="/" element={<Login/>} />
 
             <Route path="/Register" element={<Registration/>} />
 

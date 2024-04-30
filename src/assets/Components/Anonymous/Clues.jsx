@@ -7,7 +7,7 @@ import close from "/icons/close.svg"
 import "./Clues.css"
 import { useSelector } from 'react-redux';
 
-const Clues = ({ clues, setClues, closeRelation, friendship, specialClues, onClose  }) => {
+const Clues = ({ clues, setClues, closeRelation, friendship, specialClues, onClose, initials  }) => {
 
     const messages = useSelector(state => state.messages); // Correctly access the messages state
 
@@ -53,7 +53,7 @@ const Clues = ({ clues, setClues, closeRelation, friendship, specialClues, onClo
 </h1>
 
      <p className="message-temp-text mb-[2rem]">
-     Oops! 😅 No one has sent you a message in last 3 Days! Share your profile link and check back later again!  
+     Oops! 😅  The sender of this message decided to be completely Anonymous and left no clue. Try guessing on your own. 
      </p>
 
      {/* <div className="message-temp-sender">
@@ -78,18 +78,44 @@ const Clues = ({ clues, setClues, closeRelation, friendship, specialClues, onClo
 </div> */}
 
 
-        </div> )  : (    <div>
+        </div> )  : (    <div className='clue-container' >
     <div className="initals">
 
-<p className="senders-initial">Sender's Initials</p>
-<p className="sender-initials">{specialClues}</p>
+<p className="senders-init">Sender's Initials:</p>
+
+
+<p className="sender-initial">{initials}</p>
 </div>
-   {/* Display other clues */}
-   <div>
-          <p>Close Relationship: {closeRelation}</p>
-          <p>Friendship: {friendship}</p>
-         
-        </div>
+
+
+<div className="initals">
+
+<p className="senders-init">How close the sender is to you:</p>
+
+
+<p className="sender-initial">{closeRelation}</p>
+</div>
+
+
+<div className="initals">
+
+<p className="senders-init">The sender rated your friendship:</p>
+
+
+<p className="sender-initial">{friendship} / 10</p>
+</div>
+
+
+<div className="initals">
+
+<p className="senders-init">Special Clue:</p>
+
+
+<p className="sender-initial">{specialClues}</p>
+</div>
+
+
+  
 
 </div> ) }
 

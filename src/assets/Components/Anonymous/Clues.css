@@ -1,7 +1,7 @@
 .clues-container{
     /* background: linear-gradient(90deg, hsla(299, 100%, 50%, 1) 0%, hsla(217, 77%, 63%, 1) 100%)!important; */
 
-    @apply h-[90vh] w-[98vw] fixed top-[5vh] right-0 bg-[#250933] px-[1rem] py-[1rem]
+    @apply  h-[80vh] w-[96vw] fixed top-[10vh] right-0 bg-[#250933] px-[1rem] py-[1rem] left-[3]
 }
 
 .clues-inside{
@@ -21,4 +21,20 @@
 .message-templatett{
     /* border: 0.01px solid rgb(0, 234, 255); */
     @apply rounded-xl w-[100%] text-[#e3dede] text-[0.85rem] flex  h-[50%] flex-col items-center justify-center   pt-[1rem] px-[0.8rem]
+}
+
+.senders-init{
+    @apply font-bold text-[1.1rem]
+}
+
+
+.sender-initial{
+    @apply font-medium
+}
+
+
+/* omoyenisamuel66@gmail.com */
+
+.clue-container{
+    @apply flex flex-col px-[1rem] gap-[1rem]
 }
