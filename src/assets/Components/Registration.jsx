@@ -59,9 +59,9 @@ e.preventDefault()
   password: ""
       })
       setRedirecting(true)
-    successMessage("Account created successfully! check your email")
+    setSuccessMessage("Account created successfully! check your email")
     } catch (error) {
-     alert(error)
+     setErrorMessage(error)
     }
 
   }
