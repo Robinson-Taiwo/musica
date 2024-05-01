@@ -19,6 +19,7 @@ const Registration = () => {
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
   });
@@ -49,8 +50,11 @@ e.preventDefault()
         email: formData.email,
         password: formData.password,
         options: {
-          redirectTo: "http://localhost:3000/Login" // Set redirect URL based on environment
-        },
+          data: {
+            username: formData.username,
+          }
+        }
+     
       }, {
         headers: {
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtkb3p4a2Nma2JjZ2dqZm14emp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ0OTU0MzEsImV4cCI6MjAzMDA3MTQzMX0.eAkfQHpoaFsU9lnlp2gvXmzlx6qsKKND9Ss-W-w-yWA',
@@ -59,6 +63,8 @@ e.preventDefault()
       
       setFormData({
         email: "",
+        username: "",
+
   password: ""
       })
       setRedirecting(true)
@@ -102,7 +108,23 @@ e.preventDefault()
 <form  onSubmit={handleSubmit}>
 
 
-    <p className='form-label' >Your Username </p>
+
+<p className='form-label' >Your Username </p>
+
+
+<input
+    type="text"
+    name="username"
+    value={formData.username}
+    onChange={handleChange}
+    placeholder="Username"
+    required // Add required attribute for form validation
+    className='login-input'
+  />
+
+
+
+<p className='form-label  mt ' >E-mail</p>
 
 
     <input
