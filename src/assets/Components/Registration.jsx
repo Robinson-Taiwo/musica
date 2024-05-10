@@ -71,7 +71,9 @@ const Registration = () => {
         setSuccessMessage("Verification email has been sent. Please verify your email before logging in.")
         setTimeout(() => setSuccessMessage("")
         , 2000); 
-        navigate('/', { replace: true });
+        
+        setTimeout(() => navigate('/', { replace: true })
+        , 5000); 
 
         // Clear form fields after successful signup
         setFormData({
