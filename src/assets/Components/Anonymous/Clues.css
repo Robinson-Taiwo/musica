@@ -38,3 +38,64 @@
 .clue-container{
     @apply flex flex-col px-[1rem] gap-[1rem]
 }
+
+
+
+
+
+/* 
+    try {
+
+        
+          if (error) {
+            // Handle authentication errors
+            if (error.message.includes('invalid')) {
+              setErrorMessage('Invalid email or password');
+            } else {
+              setErrorMessage('An error occurred while logging in. Ensure your credentials are correct ');
+              setTimeout(() => {
+                setErrorMessage("")
+              }, 3000);
+            }
+          } else {
+            // Successful login
+            setRedirecting(true)
+            setSuccessMessage('You are successfully logged in');
+            setTimeout(() => {
+                setSuccessMessage("")
+              }, 3000);
+          }
+      
+          // Clear form data
+          setFormData({
+            email: '',
+            password: ''
+          });
+
+    } catch (error) {
+        console.error('Login error:', error.message);
+        setErrorMessage('An error occurred while logging in');
+        setTimeout(() => {
+            setErrorMessage("")
+          }, 9000);
+      } */
+
+
+
+
+      /* 
+    try {
+    
+      
+      setFormData({
+        email: "",
+        username: "",
+
+  password: ""
+      })
+      setRedirecting(true)
+    setSuccessMessage("Account created successfully! check your email")
+    } catch (error) {
+     setErrorMessage(error)
+    }
+ */

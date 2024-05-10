@@ -1,24 +1,37 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import icon from "/Images/logo-icon.png"
 import "./Login.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from './Supabase/supabase'
 // import { supabase } from '../Components/Supabase';
-
+import { createUser, doSignOut, doSendEmailVerification, loginUser, getCurrentUser } from './Anonymous/Firebase/auth'
+import { AuthContext, useAuth } from './Anonymous/contexts/authContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserInfo } from './Anonymous/Store/MessageSlice'
+// import {value}
 
 const Login = () => {
 
-const [userName, setUserName] = useState("")
+ 
+
+  const [userName, setUserName] = useState("")
 const [password, setPassword] = useState("")
+const [isSigningIn, setIsSigningIn] = useState(false)
 
 
-   
+   const dispatch = useDispatch()
 let navigate = useNavigate();
+
+const userInfo = useSelector(state => state.user); // Correctly access the messages state
+const logedIn = useSelector(state => state.isLoggedIn)
+
 
 const [redirecting, setRedirecting] = useState(false);
 
+const [user, setUser] = useState(null); // State to store the current user
 
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
@@ -36,58 +49,59 @@ const [redirecting, setRedirecting] = useState(false);
   };
 
 
-  useEffect(() => {
-    if (redirecting) {
-      const timeout = setTimeout(() =>  navigate('/Message', { replace: true })
-      , 2000); // Redirect after 3 seconds
 
-      // Cleanup function to clear timeout on component unmount
-    //   return () => clearTimeout(timeout);
-    }
-  }, [redirecting, navigate]);
+  useEffect(() => {
+    const unsubscribe = getCurrentUser(setUser); // Listen for changes in authentication state
+
+    return () => unsubscribe(); // Cleanup function to unsubscribe when component unmounts
+  }, []);
+
+  console.log(userInfo)
+
 
 
   const handleSubmit = async (e)=>{
 e.preventDefault()
-    try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: formData.email,
-            password: formData.password
-          })
 
-        
-          if (error) {
-            // Handle authentication errors
-            if (error.message.includes('invalid')) {
-              setErrorMessage('Invalid email or password');
-            } else {
-              setErrorMessage('An error occurred while logging in. Ensure your credentials are correct ');
-              setTimeout(() => {
-                setErrorMessage("")
-              }, 3000);
-            }
-          } else {
-            // Successful login
-            setRedirecting(true)
-            setSuccessMessage('You are successfully logged in');
-            setTimeout(() => {
-                setSuccessMessage("")
-              }, 3000);
-          }
+
+
+
+  try {
+     // Logging in with email and password
+     const user = await loginUser(formData.email, formData.password);
+
+     // Optionally, you can display a message to the user indicating that they have successfully logged in
+     setSuccessMessage("You have successfully logged in");
+     setTimeout(() => setSuccessMessage("")
+     , 3000); 
+
+
+     
+     // Clear form fields after successful login
+     setFormData({
+       email: '',
+       password: '',
+      });
       
-          // Clear form data
-          setFormData({
-            email: '',
-            password: ''
-          });
 
-    } catch (error) {
-        console.error('Login error:', error.message);
-        setErrorMessage('An error occurred while logging in');
-        setTimeout(() => {
-            setErrorMessage("")
-          }, 9000);
-      }
+      // Redirect the user to another page if needed
+      navigate('/Profile', { replace: true });
+      
+      // Dispatch action to store user information in Redux state
+      dispatch(setUserInfo(user)); // Assuming 'user' contains the user information
+  } catch (error) {
+    // Handle any errors that occur during sign-up
+    setErrorMessage(error.message.includes("invalid-credential") && "invalid username or password");
+    setTimeout(() => setErrorMessage("")
+    , 2000); 
+     // Clear form fields after error is displayed
+     setFormData({
+      email: '',
+      password: '',
+     });
+    console.log(error.message);
+  }
+
 
   }
 

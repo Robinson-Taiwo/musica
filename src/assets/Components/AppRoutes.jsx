@@ -17,12 +17,14 @@ const AppRoutes = () => {
             <Route path="/Profile" element={<Anonymous />} />
 
             <Route path="/album" element={<Album />} />
-
+{/* omoyenisamuel66@gmail.com */}
             <Route path="/Anonymous" element={<Anonymous />} />
 
             <Route path="/Message" element={<SendMessages/>} />
 
             <Route path="/" element={<Login/>} />
+
+            <Route path="/Login" element={<Login/>} />
 
             <Route path="/Register" element={<Registration/>} />
 

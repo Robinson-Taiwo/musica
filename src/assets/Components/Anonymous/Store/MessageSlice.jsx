@@ -4,7 +4,9 @@ import persistConfig from "./ReduxPersistConfig";
 
 const initialState = {
     messages: [],
-    clues: {} // Initialize clues state
+    clues: {}, // Initialize clues state
+    user: null, // Initialize user state
+    isLoggedIn: false,
 };
 
 const messageSlice = createSlice({
@@ -14,10 +16,17 @@ const messageSlice = createSlice({
         addMessage: (state, action) => {
             state.messages.push(action.payload);
         },
-        addClues: (state, action) => {
-            state.messages.push(action.payload);
-        }
-    }
+        setUserInfo: (state, action) => {
+            state.user = action.payload;
+            state.isLoggedIn = true; // Update isLoggedIn to true when user is set
+        },
+
+        logout: (state) => {
+            state.user = null;
+            state.isLoggedIn = false;
+        },
+        // You can add more reducers to update user information if needed
+    },
 });
 
 const persistedReducer = persistReducer(
@@ -25,5 +34,5 @@ const persistedReducer = persistReducer(
     messageSlice.reducer
 );
 
-export const { addMessage, addClues } = messageSlice.actions;
+export const { addMessage, setUserInfo, logout } = messageSlice.actions;
 export default persistedReducer;

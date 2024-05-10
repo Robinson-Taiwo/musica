@@ -12,11 +12,13 @@ import "./SendMessages.css"
 import AnonymousModal from './Anonymous/AnonymousModal'
 import ChoiceModal from './Anonymous/ChoiceModal'
 import { useDispatch, useSelector } from 'react-redux'
-import { addClues, addMessage } from './Anonymous/Store/MessageSlice'
+import { addMessage } from './Anonymous/Store/MessageSlice'
 import { useNavigate } from 'react-router-dom';
-import { supabase } from './Supabase/supabase'
+// import { supabase } from './Supabase/supabase'
+import { createUser, doSignOut, doSendEmailVerification, loginUser, getCurrentUser } from './Anonymous/Firebase/auth'
 
-const SendMessages = () => {
+
+const SendMessages =() => {
 
 // const [messageLength, setMessageLenth] =useState(0)
 const [message, setMessage] = useState("")
@@ -32,7 +34,9 @@ const [specialClues, setSpecialClues] = useState("")
 const [completed, setCompleted] = useState("")
 const [warning, setWarning]= useState("")
 const [redirecting, setRedirecting] = useState(false);
+const [user, setUser] = useState(null); // State to store the current user
 
+const userInfo = useSelector(state => state.user); // Correctly access the messages state
 
 
 
@@ -54,22 +58,13 @@ const maxLengths = 508;
 const remainingCharacter = maxLengths - message.length;
 
 
-const sendMessageToSupabase = async (messageData) => {
-    try {
-      // Insert data into the 'messages' table
-      const { data, error } = await supabase.from('messages').insert(messageData);
-  
-      if (error) {
-        console.error('Error inserting data:', error.message);
-      } else {
-        console.log('Data inserted successfully:', data);
-      }
-    } catch (error) {
-      console.error('Error inserting data:', error.message);
-    }
-  };
-  
 
+useEffect(() => {
+    const unsubscribe = getCurrentUser(setUser); // Listen for changes in authentication state
+
+    return () => unsubscribe(); // Cleanup function to unsubscribe when component unmounts
+  }, []);
+//   console.log(user.displayName)
 
 const openModal = () => {
     // event.preventDefault();
@@ -92,7 +87,6 @@ const openModal = () => {
 
 
     dispatch(addMessage(newMessage));
-    sendMessageToSupabase(newMessage);
 
     setToastMessage("Clues Submitted with anonyous message ");
     setChoiceModal(false);
@@ -114,7 +108,7 @@ setsSowModal(false)
     }
 };
 
-console.log(messages);
+// console.log(messages);
 
 useEffect(() => {
     if (redirecting) {
@@ -128,7 +122,6 @@ useEffect(() => {
 
   
   const handleCluesSubmit = () => {
-    dispatch(addClues(clues));
     setToastMessage("Clues Submitted with anonymous message");
     setChoiceModal(false);
     setTimeout(() => {
@@ -197,10 +190,17 @@ message.trim() !== "" ?
     </p>
 </label>
 
-<textarea name="" placeholder='Leave A message for @oluwarotimi__ here..' maxLength={maxLengths} id="text-area"
-value={message}
-onChange={(e)=>setMessage(e.target.value)}
+<textarea
+  name=""
+  placeholder={`Leave a message for ${
+    userInfo && userInfo.user.displayName ? userInfo.user.displayName : "unknown"
+  } here..`}
+  maxLength={maxLengths}
+  id="text-area"
+  value={message}
+  onChange={(e) => setMessage(e.target.value)}
 ></textarea>
+
 
 <p className="character-left">
    <span className="bold-white">

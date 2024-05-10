@@ -14,19 +14,34 @@ import instagram from "/icons/instagram.svg"
 import facebook from "/icons/facebook.svg"
 
 import "./Anonymous.css"
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './contexts/authContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAuth, signOut } from 'firebase/auth'
+import { logout } from './Store/MessageSlice'
 
 const Anonymous = () => {
+    const userInfo = useSelector(state => state.user); // Correctly access the messages state
+const navigate = useNavigate()
+    const logedIn = useSelector(state => state.isLoggedIn)
 
     const [modal, setmodal] = useState(false)
+    const [dummyName, setDummyName] = useState("unknown")
  
 useEffect(() => {
  
     setmodal(true)
-
-
 }, [])
+
+
+
+useEffect(() => {
+ if (!logedIn){
+
+    navigate('/', { replace: true })
+ }
+    
+}, [logedIn, navigate])
 
     //defining a function to close the modal up
     const closeModal = ()=>{
@@ -34,6 +49,21 @@ useEffect(() => {
         }
         
 
+const { currentUser } = useAuth()
+const auth = getAuth();
+const dispatch = useDispatch()
+
+const handleLogOut = () =>{
+    signOut(auth).then(() => {
+        dispatch(logout());
+        
+        console.log("you have signed out")
+        navigate('/', { replace: true })
+
+      }).catch((error) => {
+        // An error happened.
+      });
+}
 
 
   return (
@@ -43,7 +73,8 @@ useEffect(() => {
 <section className="second-layer">
 
     <h1 className="user-name">
-        @Oluwarotimi__'s Profile
+    {userInfo && userInfo.user.displayName ? userInfo.user.displayName : "unknown"}'s Profile
+           {/* {console.log(userInfo.displayName)} */}
     </h1>
 
     <h2 className="user-link">
@@ -87,7 +118,7 @@ useEffect(() => {
 <div className="purple-line">
 </div>
 
-<button className="view-messages settings ">
+<button onClick={()=> handleLogOut()} className="view-messages settings ">
    <span>settings</span> <span><img src={settings} alt="" className='shared' /></span>
 </button>
 

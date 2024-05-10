@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
@@ -7,6 +8,13 @@ import arrow from "/icons/arrow.svg"
 import { Link, useNavigate } from 'react-router-dom'
 import "./Registration.css"
 import { supabase } from './Supabase/supabase'
+import { loginUser, createUser } from './Anonymous/Firebase/auth'
+import { useAuth } from './Anonymous/contexts/authContext'
+import { sendEmailVerification, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './Anonymous/Firebase/firebase'
+
+
 
 const Registration = () => {
 
@@ -15,7 +23,8 @@ const Registration = () => {
 
   const [redirecting, setRedirecting] = useState(false);
   
- 
+  const [isSigningIn, setIsSigningIn] = useState(false)
+
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [formData, setFormData] = useState({
@@ -43,37 +52,60 @@ const Registration = () => {
     }));
   };
 
-  const handleSubmit = async (e)=>{
-e.preventDefault()
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            username: formData.username,
-          }
-        }
-     
-      }, {
-        headers: {
-          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtkb3p4a2Nma2JjZ2dqZm14emp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ0OTU0MzEsImV4cCI6MjAzMDA3MTQzMX0.eAkfQHpoaFsU9lnlp2gvXmzlx6qsKKND9Ss-W-w-yWA',
-        },
-      });
-      
-      setFormData({
-        email: "",
-        username: "",
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    // if (!isSigningIn) {
+    //   setIsSigningIn(true);
+  
+      try {
+        // Create user with email and password
+        const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
 
-  password: ""
-      })
-      setRedirecting(true)
-    setSuccessMessage("Account created successfully! check your email")
-    } catch (error) {
-     setErrorMessage(error)
-    }
 
-  }
+        const user = userCredential.user
+
+        await updateProfile(user, { displayName: formData.username });
+
+        
+        // Send verification email
+        await sendEmailVerification(userCredential.user);
+  
+        // Optionally, you can display a message to the user indicating that a verification email has been sent
+        alert('Verification email has been sent. Please verify your email before logging in.');
+        setRedirecting(true)
+  
+        // Clear form fields after successful signup
+        setFormData({
+          username: '',
+          email: '',
+          password: '',
+        });
+      } catch (error) {
+        // Handle any errors that occur during sign-up
+        setFormData({
+          username: '',
+          email: '',
+          password: '',
+        });
+        setErrorMessage(error.message.includes("auth/email-already-in-use") && "invalid username or password");
+        // setErrorMessage(error.message);
+
+        console.log(error.message)
+
+        setTimeout(() => setErrorMessage("")
+      , 2000); 
+      } finally {
+        // Reset isSigningIn state after sign-up attempt
+        setIsSigningIn(false);
+        setFormData({
+          username: '',
+          email: '',
+          password: '',
+        });
+      }
+    
+  };
 
 
   return (
