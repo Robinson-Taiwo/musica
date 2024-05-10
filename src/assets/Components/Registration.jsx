@@ -22,9 +22,7 @@ const Registration = () => {
   let navigate = useNavigate();
 
   const [redirecting, setRedirecting] = useState(false);
-  
   const [isSigningIn, setIsSigningIn] = useState(false)
-
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [formData, setFormData] = useState({
@@ -38,8 +36,7 @@ const Registration = () => {
       const timeout = setTimeout(() =>  navigate('/', { replace: true })
       , 3000); // Redirect after 3 seconds
 
-      // Cleanup function to clear timeout on component unmount
-    //   return () => clearTimeout(timeout);
+   
     }
   }, [redirecting, navigate]);
 
@@ -55,9 +52,7 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // if (!isSigningIn) {
-    //   setIsSigningIn(true);
-  
+   
       try {
         // Create user with email and password
         const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
@@ -72,8 +67,10 @@ const Registration = () => {
         await sendEmailVerification(userCredential.user);
   
         // Optionally, you can display a message to the user indicating that a verification email has been sent
-        alert('Verification email has been sent. Please verify your email before logging in.');
-        setRedirecting(true)
+      
+        setSuccessMessage("Verification email has been sent. Please verify your email before logging in.")
+        setTimeout(() => setSuccessMessage("")
+        , 2000); 
   
         // Clear form fields after successful signup
         setFormData({
