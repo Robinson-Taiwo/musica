@@ -78,7 +78,7 @@ const handleLogOut = () =>{
     </h1>
 
     <h2 className="user-link">
-       <span> https://gdpd.xyz/@oluwarotimi__</span>  <span><img className='copy' src={copy} alt="" /></span>
+       <span> https://gdpd.xyz/{userInfo && userInfo.user.displayName ? userInfo.user.displayName : "unknown"}__</span>  <span><img className='copy' src={copy} alt="" /></span>
     </h2>
 
     <p className="user-notice">
