@@ -16,6 +16,7 @@ import { addMessage } from './Anonymous/Store/MessageSlice'
 import { useNavigate } from 'react-router-dom';
 // import { supabase } from './Supabase/supabase'
 import { createUser, doSignOut, doSendEmailVerification, loginUser, getCurrentUser } from './Anonymous/Firebase/auth'
+import axios from 'axios'
 
 
 const SendMessages =() => {
@@ -37,6 +38,7 @@ const [redirecting, setRedirecting] = useState(false);
 const [user, setUser] = useState(null); // State to store the current user
 
 const userInfo = useSelector(state => state.user); // Correctly access the messages state
+
 
 
 
@@ -66,6 +68,48 @@ useEffect(() => {
   }, []);
 //   console.log(user.displayName)
 
+
+
+
+
+
+const sendMessage = async (messageData) => {
+  const databaseURL = 'https://anonymous-583c1-default-rtdb.firebaseio.com/Messages.json';
+
+  try {
+    // Send a POST request to add the message to the database
+    const response = await axios.post(`${databaseURL}/${userInfo.user.uid}.json`, messageData);
+
+    // Log the response data if successful
+    console.log('Message added successfully:', response.data);
+  } catch (error) {
+    // Log any errors
+    console.error('Error adding message:', error);
+  }
+};
+
+// Example usage:
+const timeSent = new Date().toLocaleTimeString();
+const dateSent = new Date().toLocaleDateString()
+
+
+const messageData = {
+  message_id: 'Message1_id',
+  content: message,
+  user_id: userInfo.user.uid,
+  timestamp: Date.now().toString(),
+  time: timeSent,
+  date: dateSent,
+  name: clues.nameInitial,
+  friendship: clues.friendship,
+  closeRelation: clues.closeRelation,
+  specialClues: clues.specialClues,
+};
+
+
+
+
+
 const openModal = () => {
     // event.preventDefault();
 
@@ -85,8 +129,10 @@ const openModal = () => {
             specialClues: clues.specialClues,
         };
 
+        const userId = userInfo.user.uid;
 
     dispatch(addMessage(newMessage));
+    sendMessage(messageData)
 
     setToastMessage("Clues Submitted with anonyous message ");
     setChoiceModal(false);
@@ -141,7 +187,43 @@ message.trim() !== "" ?
       }, 3000);
 
 
+
  }
+
+
+
+
+//  URL to your Firebase Realtime Database
+ const databaseURL = 'https://anonymous-583c1-default-rtdb.firebaseio.com/Messages.json';
+ 
+ // Function to fetch data from the database
+ const fetchDataFromDatabase = async () => {
+   try {
+     // Fetch data from the database using Axios
+     const response = await axios.get(databaseURL);
+ 
+     // Extract data from the response
+     const data = response.data;
+     console.log('Data fetched successfully:', data);
+   } catch (error) {
+     console.error('Error fetching data:', error.message);
+   }
+ };
+ 
+//  Call the function to fetch data
+ fetchDataFromDatabase();
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
 
